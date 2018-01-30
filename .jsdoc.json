@@ -1,0 +1,40 @@
+{
+    "tags": {
+        "allowUnknownTags": true,
+        "dictionaries": ["jsdoc", "closure"]
+    },
+    "source": {
+        "include": ["index.js", "./lib"],
+        "includePattern": ".+\\.js(doc)?$",
+        "excludePattern": "(^|\\/|\\\\)_"
+    },
+    "plugins": [],
+    "opts": {
+        "template": "node_modules/tui-jsdoc-template",
+        "encoding": "utf8",
+        "recurse": true,
+        "verbose": true
+    },
+    "templates": {
+        "template-DOC": "https://github.com/nhnent/tui.jsdoc-template#custom-styles",
+        "useCollapsibles": true,
+        "name": "Tui JSDoc Template",
+        "footerText": "My awesome footer text",
+        "logo": {
+            "url": "http://nhnent.github.io/tui.component.tree/latest/styles/logo.png",
+            "width": "150px",
+            "height": "13px",
+            "link": "https://github.com/nhnent/tui.jsdoc-template"
+        },
+        "tabNames": {
+            "api": "API",
+            "tutorials": "Examples"
+        },
+        "cleverLinks": true,
+        "monospaceLinks": true,
+        "default": {
+            "outputSourceFiles": true,
+            "includeDate": true
+        }
+    }
+}

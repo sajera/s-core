@@ -4,7 +4,7 @@
 /**
  *
  */
-var Core = require('../../lib/core.js');
+// var Core = require('../../index.js');
 
 /**
  *
