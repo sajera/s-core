@@ -22,10 +22,14 @@ var expect = require('chai').expect;
      require('./coreevent.js');
      require('./configuration.js');
 
-     var instance = new Utilities();
+     var instance = Utilities.create();
 
      it('class "Utilities" should exist', function () {
          expect(Utilities).to.be.a('function');
+     });
+
+     it('has static methods', function () {
+         expect(Utilities.create,  "create").to.be.a('function');
      });
 
      it('"instance" should has logger', function () {
