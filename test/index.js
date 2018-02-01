@@ -17,8 +17,8 @@ var expect = require('chai').expect;
  */
 describe('MVC Core', function () {
 
-    require('./utilities/utilities.js');
-    require('./interfaces/interfaces.js');
+    require('./interfaces/index.js');
+    require('./modules/index.js');
 
 
     it('should exist', function () {
@@ -26,16 +26,14 @@ describe('MVC Core', function () {
     });
 
     it('has static methods', function () {
-        expect(Core.on,  "on").to.be.a('function');
-        expect(Core.emit,  "emit").to.be.a('function');
+        // expect(Core.on,  "on").to.be.a('function');
+        // expect(Core.emit,  "emit").to.be.a('function');
         expect(Core.create,  "create").to.be.a('function');
         // TODO connect others
 
     });
 
     it('has static props', function () {
-        expect(Core.instance,  "instance").to.be.a('object');
-        expect(Core.EVENT,  "EVENT").to.be.a('object');
         expect(Core.logger,  "logger").to.be.a('object');
         expect(Core.config,  "config").to.be.a('object');
         // TODO connect others

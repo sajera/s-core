@@ -11,8 +11,7 @@
  */
 var expect = require('chai').expect;
 
-
-describe('INTERFACES:', function () {
+describe('INTERFACES', function () {
 
     require('./error.js');
     require('./module.js');
