@@ -28,6 +28,7 @@ describe('MVC Core', function () {
     it('has static methods', function () {
         expect(Core.on,  "on").to.be.a('function');
         expect(Core.emit,  "emit").to.be.a('function');
+        expect(Core.create,  "create").to.be.a('function');
         // TODO connect others
 
     });
