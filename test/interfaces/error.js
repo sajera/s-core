@@ -4,7 +4,7 @@
 /**
  *
  */
-var ErrorInterface = require('../../lib/interfaces/error.js');
+var ErrorInterface = require('../../lib/interfaces/error');
 
 /**
  *
@@ -20,8 +20,8 @@ describe('ErrorInterface', function () {
         expect(ErrorInterface).to.be.a('function');
     });
 
-    it('has static methods', function () {
-        expect(ErrorInterface.create,  "create").to.be.a('function');
+    it('has static method create', function () {
+        expect(ErrorInterface.create,  "create").to.be.a('function').and.to.throw();
     });
 
     var msg = 'Custom error message';
@@ -35,8 +35,8 @@ describe('ErrorInterface', function () {
     });
 
     it('"instance" should has methods', function () {
-        expect(instance.toJSON,  "toJSON").to.be.a('function');
-        expect(instance.toString,  "toString").to.be.a('function');
+        expect(instance.toJSON,  "toJSON").to.be.a('function').and.to.throw();
+        expect(instance.toString,  "toString").to.be.a('function').and.to.throw();
     });
 
 });

@@ -4,7 +4,7 @@
 /**
  *
  */
-var ModuleInterface = require('../../lib/interfaces/module.js');
+var ModuleInterface = require('../../lib/interfaces/module');
 
 /**
  *
@@ -21,17 +21,18 @@ describe('ModuleInterface', function () {
     });
 
     it('has static methods', function () {
-        expect(ModuleInterface.create,  "create").to.be.a('function');
+        expect(ModuleInterface.create,  "create").to.be.a('function').and.to.throw();
     });
 
     var instance = new ModuleInterface();
 
     it('"instance" should has props', function () {
-
+        expect(instance.uid,  "uid").to.be.a('string');
+        expect(instance._name,  "_name").to.be.a('string').and.to.equal(ModuleInterface.name);
     });
 
     it('"instance" should has methods', function () {
-        expect(instance.init,  "init").to.be.a('function');
+        expect(instance.init,  "init").to.be.a('function').and.to.throw();
     });
 
 });
