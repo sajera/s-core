@@ -18,13 +18,13 @@
     "templates": {
         "template-DOC": "https://github.com/nhnent/tui.jsdoc-template#custom-styles",
         "useCollapsibles": true,
-        "name": "Tui JSDoc Template",
-        "footerText": "My awesome footer text",
+        "name": "Core Documentation",
+        "footerText": "Core (s-core)",
         "logo": {
-            "url": "http://nhnent.github.io/tui.component.tree/latest/styles/logo.png",
+            "url": "DEFINE LOGO IMAGE",
             "width": "150px",
             "height": "13px",
-            "link": "https://github.com/nhnent/tui.jsdoc-template"
+            "link": "DEFINE LINK"
         },
         "tabNames": {
             "api": "API",
