@@ -4,7 +4,7 @@
 /**
  *
  */
-var Configuration = require('../../lib/utilities/configuration');
+var Configuration = require('../../lib/modules/configuration');
 
 /**
  *
@@ -15,18 +15,20 @@ var expect = require('chai').expect;
 /**
  * TESTS
  */
-describe('utility CONFIG', function () {
+describe('Configuration', function () {
 
     it('shuld exist', function () {
         expect(Configuration).to.be.a('function');
     });
 
     it('has static methods', function () {
-        expect(Configuration.init,  "init").to.be.a('function');
-        expect(Configuration.replace,  "replace").to.be.a('function');
+        expect(Configuration.create,  "create").to.be.a('function');
         expect(Configuration.pathENV,  "pathENV").to.be.a('function');
         expect(Configuration.parseENV,  "parseENV").to.be.a('function');
     });
+
+    // initialize configuration instance
+    Configuration.create();
 
     it('has static props', function () {
         expect(Configuration.dirName,  "dirName").to.be.a('string');
@@ -50,18 +52,6 @@ describe('utility CONFIG', function () {
             DB_PASS: 's1mpl3',
             DB_HOST: 'localhost',
         });
-    });
-
-    it('method "replace/init" => test', function () {
-        class CustomConfiguration extends Configuration {
-            constructor () {
-                super();
-                this.testsProperties = true;
-            }
-        }
-        Configuration.replace(CustomConfiguration);
-        expect(Configuration.instance.testsProperties, 'custom YES').to.be.true;
-        expect(Configuration.instance instanceof Configuration, 'should stay instanceof "Configuration"').to.be.true;
     });
 
     it('"instance" should has methods', function () {
