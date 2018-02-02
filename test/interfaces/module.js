@@ -1,13 +1,11 @@
 
-"use strict";
-
 /**
- *
+ * to be tested
  */
 var ModuleInterface = require('../../lib/interfaces/module');
 
 /**
- *
+ * chai
  */
 var expect = require('chai').expect;
 
