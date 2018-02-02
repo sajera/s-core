@@ -1,13 +1,6 @@
 
-"use strict";
-
 /**
- *
- */
-// var Core = require('../../index.js');
-
-/**
- *
+ * chai
  */
 var expect = require('chai').expect;
 

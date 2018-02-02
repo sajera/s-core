@@ -1,14 +1,13 @@
 
-"use strict";
-
+'use strict';
 
 /**
- *
+ * to be tested
  */
 var Core = require('../index.js');
 
 /**
- *
+ * chai
  */
 var expect = require('chai').expect;
 
@@ -18,6 +17,8 @@ var expect = require('chai').expect;
 describe('MVC Core', function () {
 
     require('./interfaces/index.js');
+    require('./errors/index.js');
+    // TODO sync
     require('./modules/index.js');
 
 
