@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Source: lib/http/session.js | Core Documentation</title>
+    <title>Source: lib/errors/errorspec.js | Core Documentation</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -49,190 +49,209 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>
-// Using STRICT mode for ES6 features
-"use strict";
+'use strict';
 
 /**
- * Requiring application Facade
+ * base implementation ErrorInterface
  */
-const applicationFacade = require('../facade.js').ApplicationFacade.instance;
+const ErrorInterface = require('../interfaces/error');
 
 /**
- * Requiring Session
- *
- * @type {session|exports|module.exports}
+ * outsource
  */
-const session = require('express-session');
+const uid = require('s-uid');
+const is = require('s-is');
 
 /**
- *  Multi-Tenant handler
- *
- *  @author Eugene A. Kalosha &lt;ekalosha@dfusiontech.com>
+ * outsource
  */
-class HttpSession {
+const Logger = require('../modules/logger');
 
+
+/**
+ * store for errors
+ */
+var specification = {
+    0: {
+        level: 10,
+        status: 500,
+        message: 'Default or from specification of ErrorSpec. Please Make sure you use correct "id" of specification.'
+    }
+};
+
+/**
+ * @description
+    ErrorSpec has simple usage.
+    &lt;br/> Define your errors specification and extend specification of able error list.
+    &lt;br/>&lt;br/> Implementation of Error Interface. &lt;br/>&lt;br/>
+ * @author Sajera &lt;allsajera@gmail.com>
+ * @example
+ *  ErrorSpec.define(501, {
+ *      level: 10,
+ *      status: 501,
+ *      message: 'something broke'
+ *  });
+ *  ErrorSpec.create(id, [error=null]);
+ * @prop {Number} id - ID of error within specification
+ * @prop {object} specification - all data defined as data of error from specification
+ * @prop {object} error - previous error to build full stack of errors
+ * @classdesc Error specification within core
+ * @implements Error
+ * @public
+ * @class
+ */
+class ErrorSpec extends ErrorInterface {
     /**
-     * Returns Session name
-     *
-     * @returns {string}
      * @constructor
      */
-    static get SESSION_NAME () {
-        if (applicationFacade.config.env.SESSION_NAME) {
-            return applicationFacade.config.env.SESSION_NAME;
-        }
+    constructor ( id, spec, error ) {
+        // extract error object unnessasary
+        // disassemble the specification
+        let { message, level } = spec;
 
-        return 'application.sid';
+        // this
+        super(message, error);
+
+        /**
+         * @description ID of error within specification
+         * @type {Number} error id
+         * @readonly
+         */
+        this.id = id;
+
+        /**
+         * @description all data from your specification
+         * @type {Object} specification data
+         * @readonly
+         */
+        this.specification = spec;
+
+        /**
+         * @description The time when error has occurred.
+         * @type {Date}
+         * @private
+         * @readonly
+         */
+        this._date = new Date();
+
+        /**
+         * @description will be generated from date
+         * @example
+         * let err = ErrorSpec.create(id);
+         * parseInt(err.uid, 36) == err.date.valueOf();
+         * @type {String}
+         * @readonly
+         */
+        this.uid = uid.th(this.date);
+
+        /**
+         * @description will contain error constructor name
+         * @example
+         * let err = ErrorSpec.create(id);
+         * err.prefix; // => '[Processed ErrorSpec]:'
+         * @type {String}
+         * @readonly
+         */
+        this.processed = this.constructor.name;
+
+        /**
+         * @description critical level of error
+         * @example
+         * let err = ErrorSpec.create(id);
+         * err.level;
+         * @type {Number}
+         * @readonly
+         */
+        this.level = is.number(level) ? level : 0;;
+
     }
 
     /**
-     * Is session secure or not
-     *
-     * @returns {boolean}
+     * @description Representation of error data in string format.
+     * @example
+     * let err = ErrorSpec.create(id);
+     * err.toString();
+     * @returns {String}
+     * @public
      */
-    static get isSecure() {
-        return false;
+    toString () {
+        return `[Processed ${this.constructor.name}]: ` + this.message + this.stack.toString();
     }
 
     /**
-     * Creates Session based on Config Values
+     * @description Example result "toJSON" method of ErrorSpec
+     * @example ErrorSpec.create(id).toJSON();
+     * @typedef {Object} ErrorSpecJSON
+     * @property {String} uid - unique error identifer
+     * @property {String} error - error stack to string
+     * @property {String} processed - contain Error constructor processed name
+     * @property {Number} id - ID of error within specification
+     * @property {Number} level - Critical level of error
+     * @property {*} props - properties from custom specification
      */
-    static createSession () {
-        var sessionType = null;
-        var storageDetails = {};
-        let storageUri =  applicationFacade.config.env.SESSION_STORAGE;
-        if (applicationFacade.config.items.session != null &amp;&amp; applicationFacade.config.items.session.storage != null) {
-            storageUri = applicationFacade.config.items.session.storage;
-        }
 
-        // Check is session enabled
-        if (applicationFacade.config.items.session != null &amp;&amp; applicationFacade.config.items.session.disabled !== null) {
-            if (applicationFacade.config.items.session.disabled) {
-                // Session is disabled skipping
-                return null;
-            }
-        }
+    /**
+     * @description Representation of error data in object format.
+     * @example
+     * let err = ErrorSpec.create(id);
+     * err.toJSON();
+     * @returns {ErrorSpecJSON}
+     * @public
+     */
+    toJSON () {
+        let { specification, uid, processed, level, id } = this;
+        let error = this.stack.toString();
+        return {
+            id,
+            uid,
+            level,
+            error,
+            processed,
+            ...specification,
+        };
+    }
 
-        if (storageUri) {
-            storageDetails = require('url').parse(storageUri, true);
-            storageDetails.url = storageUri;
-            if (storageDetails.protocol != null) {
-                sessionType = storageDetails.protocol.toLowerCase().replace(':', '');
-            }
-        }
+    /**
+     * @description Create Error instance.
+     * @example let err = ErrorSpec.create(id, new Error());
+     * @param {Number} id - ID of error within specification
+     * @param {Object} [error=null] - previous error
+     * @returns {ErrorSpec} error instance
+     * @public
+     */
+    static create ( id, error ) {
+        error = is.object(error) ? error : null;
+        id = is.number(id) ? id : 0;
+        let Class = this;
+        let result = new Class(id, specification[id], error);
+        return result;
+    }
 
-        if (sessionType == 'redis') {
-            return HttpSession.createRedisSession(storageDetails);
-        } else if (sessionType == 'mongodb') {
-            return HttpSession.createMongoSession(storageDetails);
+    /**
+     * @description Define specification for Error
+     * @example ErrorSpec.define(100500, { ... });
+     * @param {Number} id - ID of error within specification
+     * @param {Object} specification - error specification
+     * @public
+     */
+    static define ( id, spec ) {
+        if (!is.number(id)) {
+            throw new Error(`Expectation: "id" as a Number. Got: ${id}`);
+        } if (!is.object(spec)) {
+            throw new Error(`Expectation: "specification" as a Object. Got: ${id}`);
         } else {
-            return HttpSession.createDefaultSession(storageDetails);
+            // debug log about ovveride
+            specification[id]&amp;&amp;Logger.instance.debug(`#### ErrorSpec(${id}) already defined !!! Overriding ...`);
+            // define specification
+            specification[id] = Object.assign({}, spec);
         }
-    }
-
-    /**
-     * Creates Redis Session
-     *
-     * @returns {*}
-     */
-    static createRedisSession (storageDetails) {
-        var redis   = require("redis");
-        var RedisStore = require('connect-redis')(session);
-
-        var redisClient = redis.createClient(storageDetails.port, storageDetails.hostname);
-        redisClient.on('error', function(err) {
-            console.log('ERROR. Redis error: ' + err);
-        });
-        redisClient.on('connect', function(){
-            console.log('Connected to Redis: ' + storageDetails.hostname + ":" + storageDetails.port);
-        });
-
-        var storeConfig = {
-            client: redisClient,
-            ttl: (storageDetails.query != null &amp;&amp; storageDetails.query.ttl != null ? storageDetails.query.ttl : 14400)
-        };
-        var sessionStore = new RedisStore(storeConfig);
-        var sessionConfig = {
-            resave: true,
-            saveUninitialized: true,
-            store: sessionStore,
-            name: HttpSession.SESSION_NAME,
-            // maxAge: new Date(Date.now() + 1440000),
-            secret: applicationFacade.config.env.SESSION_SECRET
-        };
-
-        console.log('#### Initializing Redis session: ', storageDetails.hostname);
-        var result = session(sessionConfig);
-
-        return result;
-    }
-
-    /**
-     * Creates Mongo Session
-     *
-     * @returns {*}
-     */
-    static createMongoSession (storageDetails) {
-        var redis   = require("redis");
-        var MongoStore = require('connect-mongo')(session);
-
-        var storeConfig = {
-            url: storageDetails.url,
-            ttl: (storageDetails.query != null &amp;&amp; storageDetails.query.ttl != null ? storageDetails.query.ttl : 86400)
-        };
-        var sessionStore = new MongoStore(storeConfig);
-        var sessionConfig = {
-            resave: true,
-            saveUninitialized: true,
-            store: sessionStore,
-            name: HttpSession.SESSION_NAME,
-            // maxAge: new Date(Date.now() + 1440000),
-            secret: applicationFacade.config.env.SESSION_SECRET
-        };
-
-        console.log('#### Initializing MongoDB session: ', storageDetails.hostname);
-        var result = session(sessionConfig);
-
-        return result;
-    }
-
-    /**
-     * Creates Default Session
-     *
-     * @returns {*}
-     */
-    static createDefaultSession (storageDetails) {
-        var result = session({
-            resave: true,
-            saveUninitialized: true,
-            // name: HttpSession.SESSION_NAME,
-            secret: applicationFacade.config.env.SESSION_SECRET
-        });
-
-        return result;
-    }
-
-    /**
-     * Set Domain Cookie
-     *
-     * @param url
-     * @param request
-     * @param response
-     */
-    static setDomainCookie (url, request, response) {
-        var urlDetails = require('url').parse(url);
-        var sessionId = request.sessionID;
-
-        response.cookie(HttpSession.SESSION_NAME, sessionId, {domain: urlDetails.hostname, path: '/', secure: HttpSession.isSecure});
     }
 }
 
 /**
- * Exporting URL Utils
- *
- * @type {Function}
+ * @exports ErrorSpec
  */
-exports = module.exports = HttpSession;
+module.exports = ErrorSpec;
 </code></pre>
         </article>
     </section>

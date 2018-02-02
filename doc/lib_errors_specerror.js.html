@@ -1,8 +1,10 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Module: BaseError | Core Documentation</title>
+    <title>Source: lib/errors/specerror.js | Core Documentation</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -43,49 +45,148 @@
 
 
 
-
-<section>
-
-<header>
     
-        <h2>BaseError</h2>
-        
-    
-</header>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>
+'use strict';
 
-<article>
-    
-        <div class="container-overview">
-        
-            
+/**
+ * base implementation ErrorInterface
+ */
+const ErrorInterface = require('../interfaces/error');
 
-            
-        
-        </div>
-    
+/**
+* outsource
+*/
+const uid = require('s-uid');
+const is = require('s-is');
 
-    
+/**
+ * @description
+    SpecError has simple usage.
+    &lt;br/> Define your errors specification and extend specification of able error list.
+    &lt;br/>&lt;br/> Implementation of Error Interface. &lt;br/>&lt;br/>
+ * @author Sajera &lt;allsajera@gmail.com>
+ * @classdesc SpecError.create(id);
+ * @implements Error
+ * @extends BaseError
+ * @public
+ * @class
+ */
+class SpecError extends ErrorInterface {
+    /**
+     * @description SpecError inheritance from native error
+     * @prop {string} message - error mesaage
+     * @prop {object} error - previous error to build full stack of errors
+     * @prop {object} level - previous error to build full stack of errors
+     * @constructor
+     */
+    constructor ( message, error, level ) {
+        // this
+        super(message, error);
 
-    
+        /**
+         * @description The time when error has occurred.
+         * @type {Date}
+         * @private
+         */
+        this._date = new Date();
 
-    
+        /**
+         * @description will be generated from date
+         * @example
+         * let err = SpecError.create(message, null);
+         * parseInt(err.uid, 36) == err.date.valueOf();
+         * @type {String}
+         */
+        this.uid = uid.th(this.date);
 
-    
+        /**
+         * @description will contain error constructor name
+         * @example
+         * let err = SpecError.create(message, null);
+         * err.prefix; // => '[Processed SpecError]:'
+         * @type {String}
+         */
+        this.processed = `[Processed ${this.constructor.name}]: `;
 
-    
+        /**
+         * @description critical level of error
+         * @example
+         * let err = SpecError.create(message, null, 8);
+         * err.level; // => 8
+         * @type {Number}
+         */
+        this.level = level;
 
-    
+    }
 
-    
+    /**
+     * @description Representation of error data in string format.
+     * @example
+     * let err = SpecError.create(message, null);
+     * err.toString();
+     * @returns {String}
+     * @public
+     */
+    toString () {
+        return this.processed + this.message + this.stack.toString();
+    }
 
-    
+    /**
+     * The complete Triforce, or one or more components of the Triforce.
+     * @typedef {Object} SpecErrorJSON
+     * @property {String} error - error stack to string
+     * @property {String} message - error message
+     * @property {String} uid - unique error identifer
+     * @property {String} processed - contain Error constructor processed name
+     * @property {Number} level - Critical level of error
+     */
 
-    
+    /**
+     * @description Representation of error data in object format.
+     * @example
+     * let err = SpecError.create(message, null);
+     * err.toJSON();
+     * @returns {SpecErrorJSON}
+     * @public
+     */
+    toJSON () {
+        return {
+            error: this.stack.toString(),
+            processed: this.processed,
+            message: this.message,
+            level: this.level,
+            uid: this.uid,
+        };
+    }
 
-    
-</article>
+    /**
+     * @description Create Error instance.
+     * @example let err = SpecError.create(message, error, 2);
+     * @param {String} message - error message
+     * @param {Object} [error=null] - previous error
+     * @param {Number} [level=1] - critical level of error
+     * @returns {SpecError} error instance
+     * @public
+     */
+    static create ( message, error, level ) {
+        error = is.object(error) ? error : null;
+        level = is.number(level) ? level : 1;
+        let Class = this;
+        let result = new Class(message, error, level);
+        return result;
+    }
+}
 
-</section>
+/**
+ * @exports SpecError
+ */
+module.exports = SpecError;
+</code></pre>
+        </article>
+    </section>
 
 
 
@@ -102,7 +203,7 @@
 <script src="scripts/linenumber.js"></script>
 
     <script>
-        var id = 'module:BaseError_sub'.replace(/"/g, '_');
+        var id = '_sub'.replace(/"/g, '_');
         var selectedApi = document.getElementById(id); // do not use jquery selector
         var $selectedApi = $(selectedApi);
 

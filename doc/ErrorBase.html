@@ -1,10 +1,8 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Source: lib/http/session.js | Core Documentation</title>
+    <title>Class: ErrorBase | Core Documentation</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -45,197 +43,1093 @@
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>
-// Using STRICT mode for ES6 features
-"use strict";
+        <h2><span class="attribs"><span class="type-signature"></span></span>ErrorBase<span class="signature">()</span><span class="type-signature"></span></h2>
+        
+            <div class="class-description">Base Error implementation within core</div>
+        
+    
+</header>
 
-/**
- * Requiring application Facade
- */
-const applicationFacade = require('../facade.js').ApplicationFacade.instance;
+<article>
+    
+        <div class="container-overview">
+        
+            
 
-/**
- * Requiring Session
- *
- * @type {session|exports|module.exports}
- */
-const session = require('express-session');
+<dt>
+    
+        <h4 class="name" id="ErrorBase">
+            
+                new <span class="type-signature"></span>ErrorBase<span class="signature">()</span><span class="type-signature"></span>
+                
+            
+            <div class="container-source members">
+                <code><a href="lib_errors_errorbase.js.html">lib/errors/errorbase.js</a></code>,
+                <code><a href="lib_errors_errorbase.js.html#line30">line 30</a></code>
+            </div>
+            
+        </h4>
 
-/**
- *  Multi-Tenant handler
- *
- *  @author Eugene A. Kalosha &lt;ekalosha@dfusiontech.com>
- */
-class HttpSession {
+        
+    
+</dt>
+<dd>
 
-    /**
-     * Returns Session name
-     *
-     * @returns {string}
-     * @constructor
-     */
-    static get SESSION_NAME () {
-        if (applicationFacade.config.env.SESSION_NAME) {
-            return applicationFacade.config.env.SESSION_NAME;
-        }
+    
+    <div class="description">
+        ErrorBase has minimal implementation logic.
+    <br/> Use to make oyur custom errors within your applications
+    <br/><br/> Implementation of Error Interface. <br/><br/>
+    </div>
+    
 
-        return 'application.sid';
-    }
+    
 
-    /**
-     * Is session secure or not
-     *
-     * @returns {boolean}
-     */
-    static get isSecure() {
-        return false;
-    }
+    
 
-    /**
-     * Creates Session based on Config Values
-     */
-    static createSession () {
-        var sessionType = null;
-        var storageDetails = {};
-        let storageUri =  applicationFacade.config.env.SESSION_STORAGE;
-        if (applicationFacade.config.items.session != null &amp;&amp; applicationFacade.config.items.session.storage != null) {
-            storageUri = applicationFacade.config.items.session.storage;
-        }
+    
 
-        // Check is session enabled
-        if (applicationFacade.config.items.session != null &amp;&amp; applicationFacade.config.items.session.disabled !== null) {
-            if (applicationFacade.config.items.session.disabled) {
-                // Session is disabled skipping
-                return null;
-            }
-        }
+    
 
-        if (storageUri) {
-            storageDetails = require('url').parse(storageUri, true);
-            storageDetails.url = storageUri;
-            if (storageDetails.protocol != null) {
-                sessionType = storageDetails.protocol.toLowerCase().replace(':', '');
-            }
-        }
+    
 
-        if (sessionType == 'redis') {
-            return HttpSession.createRedisSession(storageDetails);
-        } else if (sessionType == 'mongodb') {
-            return HttpSession.createMongoSession(storageDetails);
-        } else {
-            return HttpSession.createDefaultSession(storageDetails);
-        }
-    }
+    
 
-    /**
-     * Creates Redis Session
-     *
-     * @returns {*}
-     */
-    static createRedisSession (storageDetails) {
-        var redis   = require("redis");
-        var RedisStore = require('connect-redis')(session);
+    
 
-        var redisClient = redis.createClient(storageDetails.port, storageDetails.hostname);
-        redisClient.on('error', function(err) {
-            console.log('ERROR. Redis error: ' + err);
-        });
-        redisClient.on('connect', function(){
-            console.log('Connected to Redis: ' + storageDetails.hostname + ":" + storageDetails.port);
-        });
+    
 
-        var storeConfig = {
-            client: redisClient,
-            ttl: (storageDetails.query != null &amp;&amp; storageDetails.query.ttl != null ? storageDetails.query.ttl : 14400)
-        };
-        var sessionStore = new RedisStore(storeConfig);
-        var sessionConfig = {
-            resave: true,
-            saveUninitialized: true,
-            store: sessionStore,
-            name: HttpSession.SESSION_NAME,
-            // maxAge: new Date(Date.now() + 1440000),
-            secret: applicationFacade.config.env.SESSION_SECRET
-        };
+    
 
-        console.log('#### Initializing Redis session: ', storageDetails.hostname);
-        var result = session(sessionConfig);
+    
 
-        return result;
-    }
+    
 
-    /**
-     * Creates Mongo Session
-     *
-     * @returns {*}
-     */
-    static createMongoSession (storageDetails) {
-        var redis   = require("redis");
-        var MongoStore = require('connect-mongo')(session);
 
-        var storeConfig = {
-            url: storageDetails.url,
-            ttl: (storageDetails.query != null &amp;&amp; storageDetails.query.ttl != null ? storageDetails.query.ttl : 86400)
-        };
-        var sessionStore = new MongoStore(storeConfig);
-        var sessionConfig = {
-            resave: true,
-            saveUninitialized: true,
-            store: sessionStore,
-            name: HttpSession.SESSION_NAME,
-            // maxAge: new Date(Date.now() + 1440000),
-            secret: applicationFacade.config.env.SESSION_SECRET
-        };
+    <h5 class="subsection-title">Properties:</h5>
 
-        console.log('#### Initializing MongoDB session: ', storageDetails.hostname);
-        var result = session(sessionConfig);
+    
 
-        return result;
-    }
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
 
-    /**
-     * Creates Default Session
-     *
-     * @returns {*}
-     */
-    static createDefaultSession (storageDetails) {
-        var result = session({
-            resave: true,
-            saveUninitialized: true,
-            // name: HttpSession.SESSION_NAME,
-            secret: applicationFacade.config.env.SESSION_SECRET
-        });
+        <th>Type</th>
 
-        return result;
-    }
+        
 
-    /**
-     * Set Domain Cookie
-     *
-     * @param url
-     * @param request
-     * @param response
-     */
-    static setDomainCookie (url, request, response) {
-        var urlDetails = require('url').parse(url);
-        var sessionId = request.sessionID;
+        
 
-        response.cookie(HttpSession.SESSION_NAME, sessionId, {domain: urlDetails.hostname, path: '/', secure: HttpSession.isSecure});
-    }
-}
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-/**
- * Exporting URL Utils
- *
- * @type {Function}
- */
-exports = module.exports = HttpSession;
-</code></pre>
-        </article>
-    </section>
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>message</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">error mesaage</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>error</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">previous error to build full stack of errors</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>level</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">previous error to build full stack of errors</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="implements">Implements:</dt>
+    <dd class="implements"><ul>
+        
+            <li><a href="Error.html">Error</a></li>
+        
+    </ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li><a href="mailto:allsajera@gmail.com">Sajera</a></li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>ErrorBase.create(message, [error=null], [level=1]);</code></pre>
+
+    
+
+</dd>
+
+        
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        <dl>
+            
+
+<dt>
+<h4 class="name" id="_date">
+    <span class="type-signature"><span class="icon green">private</span>, <span class="icon green">readonly</span> </span>_date<span class="type-signature"> :Date</span>
+    
+    <div class="container-source members">
+        <code><a href="lib_errors_errorbase.js.html">lib/errors/errorbase.js</a></code>,
+        <code><a href="lib_errors_errorbase.js.html#line44">line 44</a></code>
+    </div>
+    
+</h4>
+
+
+</dt>
+<dd>
+    
+    <div class="description">
+        The time when error has occurred.
+    </div>
+    
+
+    <!--
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Date</span>
+
+
+            </li>
+        </ul>
+    
+    -->
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+</dd>
+
+        
+            
+
+<dt>
+<h4 class="name" id="level">
+    <span class="type-signature"><span class="icon green">readonly</span> </span>level<span class="type-signature"> :Number</span>
+    
+    <div class="container-source members">
+        <code><a href="lib_errors_errorbase.js.html">lib/errors/errorbase.js</a></code>,
+        <code><a href="lib_errors_errorbase.js.html#line74">line 74</a></code>
+    </div>
+    
+</h4>
+
+
+</dt>
+<dd>
+    
+    <div class="description">
+        critical level of error
+    </div>
+    
+
+    <!--
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Number</span>
+
+
+            </li>
+        </ul>
+    
+    -->
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>let err = ErrorBase.create(message, null, 8);err.level; // => 8</code></pre>
+
+    
+</dd>
+
+        
+            
+
+<dt>
+<h4 class="name" id="processed">
+    <span class="type-signature"><span class="icon green">readonly</span> </span>processed<span class="type-signature"> :String</span>
+    
+    <div class="container-source members">
+        <code><a href="lib_errors_errorbase.js.html">lib/errors/errorbase.js</a></code>,
+        <code><a href="lib_errors_errorbase.js.html#line64">line 64</a></code>
+    </div>
+    
+</h4>
+
+
+</dt>
+<dd>
+    
+    <div class="description">
+        will contain error constructor name
+    </div>
+    
+
+    <!--
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">String</span>
+
+
+            </li>
+        </ul>
+    
+    -->
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>let err = ErrorBase.create(message);err.prefix; // => 'ErrorBase'</code></pre>
+
+    
+</dd>
+
+        
+            
+
+<dt>
+<h4 class="name" id="uid">
+    <span class="type-signature"><span class="icon green">readonly</span> </span>uid<span class="type-signature"> :String</span>
+    
+    <div class="container-source members">
+        <code><a href="lib_errors_errorbase.js.html">lib/errors/errorbase.js</a></code>,
+        <code><a href="lib_errors_errorbase.js.html#line54">line 54</a></code>
+    </div>
+    
+</h4>
+
+
+</dt>
+<dd>
+    
+    <div class="description">
+        will be generated from date
+    </div>
+    
+
+    <!--
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">String</span>
+
+
+            </li>
+        </ul>
+    
+    -->
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>let err = ErrorBase.create(message);parseInt(err.uid, 36) == err.date.valueOf();</code></pre>
+
+    
+</dd>
+
+        </dl>
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        <dl>
+                
+
+<dt>
+    
+        <h4 class="name" id=".create">
+            
+                <span class="type-signature"><span class="icon green">static</span> </span>create<span class="signature">(message, error<span class="signature-attributes">opt</span>, level<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {<a href="ErrorBase.html">ErrorBase</a>}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="lib_errors_errorbase.js.html">lib/errors/errorbase.js</a></code>,
+                <code><a href="lib_errors_errorbase.js.html#line128">line 128</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Create Error instance.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>message</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">error message</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>error</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    null
+                
+                </td>
+            
+
+            <td class="description last">previous error</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>level</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    1
+                
+                </td>
+            
+
+            <td class="description last">critical level of error</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type"><a href="ErrorBase.html">ErrorBase</a></span>
+
+
+
+
+
+- error instance
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>let err = ErrorBase.create(message, error, 2);</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="toJSON">
+            
+                <span class="type-signature"></span>toJSON<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="global.html#ErrorBaseJSON">ErrorBaseJSON</a>}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="lib_errors_errorbase.js.html">lib/errors/errorbase.js</a></code>,
+                <code><a href="lib_errors_errorbase.js.html#line109">line 109</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Representation of error data in object format.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type"><a href="global.html#ErrorBaseJSON">ErrorBaseJSON</a></span>
+
+
+
+
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="implements">Implements:</dt>
+    <dd class="implements"><ul>
+        
+            <li><a href="Error.html#toJSON">Error#toJSON</a></li>
+        
+    </ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>let err = ErrorBase.create(message);err.toJSON();</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="toString">
+            
+                <span class="type-signature"></span>toString<span class="signature">()</span><span class="type-signature"> &rarr; {String}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="lib_errors_errorbase.js.html">lib/errors/errorbase.js</a></code>,
+                <code><a href="lib_errors_errorbase.js.html#line86">line 86</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Representation of error data in string format.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">String</span>
+
+
+
+
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="implements">Implements:</dt>
+    <dd class="implements"><ul>
+        
+            <li><a href="Error.html#toString">Error#toString</a></li>
+        
+    </ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>let err = ErrorBase.create(message);err.toString();</code></pre>
+
+    
+
+</dd>
+
+            </dl>
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 
@@ -252,7 +1146,7 @@ exports = module.exports = HttpSession;
 <script src="scripts/linenumber.js"></script>
 
     <script>
-        var id = '_sub'.replace(/"/g, '_');
+        var id = 'ErrorBase_sub'.replace(/"/g, '_');
         var selectedApi = document.getElementById(id); // do not use jquery selector
         var $selectedApi = $(selectedApi);
 
