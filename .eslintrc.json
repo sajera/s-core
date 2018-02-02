@@ -14,8 +14,11 @@
         "strict": ["warn"],
         "no-undef": ["warn"],
         "curly": ["warn", "all"],
-        "valid-jsdoc": ["off", {
+        "valid-jsdoc": ["warn", {
             "requireReturn": false,
+            "requireReturnType": true,
+            "requireParamDescription": false,
+            "requireReturnDescription": false,
             "preferType": {
                 "Boolean": "Boolean",
                 "Number": "Number",
