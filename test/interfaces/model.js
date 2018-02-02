@@ -18,19 +18,13 @@ describe('ModelInterface', function () {
         expect(ModelInterface).to.be.a('function');
     });
 
-    it('has static methods', function () {
-        expect(ModelInterface.create,  "create").to.be.a('function').and.to.throw();
+    it('should has @abstract @static methods "create"', function () {
+        expect(ModelInterface.create).to.be.a('function').and.to.throw();
     });
 
     var instance = new ModelInterface();
-
-    it('"instance" should has props', function () {
-        expect(instance.uid,  "uid").to.be.a('string');
-        expect(instance._name,  "_name").to.be.a('string').and.to.equal(ModelInterface.name);
-    });
-
-    it('"instance" should has methods', function () {
-        expect(instance.init,  "init").to.be.a('function').and.not.to.throw();
+    it('"instance" should has @abstract methods "initialize"', function () {
+        expect(instance.initialize).to.be.a('function').and.not.to.throw();
     });
 
 });
