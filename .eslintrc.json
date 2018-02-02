@@ -14,7 +14,7 @@
         "strict": ["warn"],
         "no-undef": ["warn"],
         "curly": ["warn", "all"],
-        "valid-jsdoc": ["warn", {
+        "valid-jsdoc": ["off", {
             "requireReturn": false,
             "preferType": {
                 "Boolean": "Boolean",
@@ -53,7 +53,7 @@
         "constructor-super": ["warn"],
         "default-case": ["warn"],
         "dot-location": ["warn", "property"],
-        "func-call-spacing": ["warn", "always"],
+        "func-call-spacing": ["warn", "never"],
         "key-spacing": ["warn", { "afterColon": true }],
         "operator-linebreak": ["warn", "none"],
         "linebreak-style": ["error", "windows"],
