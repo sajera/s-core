@@ -11,7 +11,7 @@
         "prepublishOnly": "npm run lint && npm run test && npm run doc",
         "test": "mocha test/index.js",
         "lint": "eslint -c .eslintrc.json ./lib/*.js --fix",
-        "doc": "jsdoc --verbose -r -c .jsdoc.json -R readme.md -a all -d doc",
+        "doc": "jsdoc --verbose -r -c .jsdoc.json -R readme.md -a all -d .doc",
         "debug": "devtool index.js"
     },
     "homepage": "",

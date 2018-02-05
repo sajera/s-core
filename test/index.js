@@ -24,28 +24,33 @@ describe('MVC Core', function () {
     require('./utilities/utilities.js');
     require('./interfaces/index.js');
     require('./errors/index.js');
-    // TODO sync
-    // require('./modules/index.js');
 
 
     it('should exist', function () {
         expect(Core).to.be.a('function');
     });
 
-    it('has static methods', function () {
-        // expect(Core.on,  "on").to.be.a('function');
-        // expect(Core.emit,  "emit").to.be.a('function');
-        expect(Core.create,  "create").to.be.a('function');
+    it('has static classes', function () {
+        expect(Core.ErrorBase, "ErrorBase").to.be.a('function');
+        expect(Core.ErrorSpec, "ErrorSpec").to.be.a('function');
+        expect(Core.ModuleBase, "ModuleBase").to.be.a('function');
         // TODO connect others
 
     });
 
-    // it('has static props', function () {
-    //     expect(Core.logger,  "logger").to.be.a('object');
-    //     expect(Core.config,  "config").to.be.a('object');
-    //     // TODO connect others
-    //
-    // });
+    it('has static methods', function () {
+        expect(Core.create, "create").to.be.a('function');
+        // TODO connect others
+
+    });
+
+    it('has static props', function () {
+        expect(Core.logger, "logger").to.be.a('object');
+        expect(Core.config, "config").to.be.a('object');
+        expect(Core.utils, "utils").to.be.a('object');
+        // TODO connect others
+
+    });
 
 
 });

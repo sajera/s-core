@@ -2,12 +2,12 @@
 "use strict";
 
 /**
- *
+ * to be tested
  */
 var Logger = require('../../lib/utilities/logger');
 
 /**
- *
+ * chai
  */
 var expect = require('chai').expect;
 
