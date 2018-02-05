@@ -16,10 +16,16 @@ var expect = require('chai').expect;
  */
 describe('MVC Core', function () {
 
+    it('TEST TESTS', function () {
+        // expect(Core).to.be.a('class');
+
+    });
+
+    require('./utilities/utilities.js');
     require('./interfaces/index.js');
     require('./errors/index.js');
     // TODO sync
-    require('./modules/index.js');
+    // require('./modules/index.js');
 
 
     it('should exist', function () {
@@ -34,22 +40,12 @@ describe('MVC Core', function () {
 
     });
 
-    it('has static props', function () {
-        expect(Core.logger,  "logger").to.be.a('object');
-        expect(Core.config,  "config").to.be.a('object');
-        // TODO connect others
-
-    });
-
-    it('has static Classes', function () {
-        // interfaces
-        expect(Core.interface.Error,  "interface.Error").to.be.a('function');
-        expect(Core.interface.Module,  "interface.Module").to.be.a('function');
-        expect(Core.interface.Logger,  "interface.Logger").to.be.a('function');
-        expect(Core.interface.Configuration,  "interface.Configuration").to.be.a('function');
-        // TODO connect others
-
-    });
+    // it('has static props', function () {
+    //     expect(Core.logger,  "logger").to.be.a('object');
+    //     expect(Core.config,  "config").to.be.a('object');
+    //     // TODO connect others
+    //
+    // });
 
 
 });

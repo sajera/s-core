@@ -1,8 +1,10 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Interface: View | Core Documentation</title>
+    <title>Source: lib/modules/modulebase.js | Core Documentation</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -43,283 +45,86 @@
 
 
 
-
-<section>
-
-<header>
-    
-        <h2>View</h2>
-        
-    
-</header>
-
-<article>
-    
-        <div class="container-overview">
-        
-            
-                <div class="description">Define interface of Views within the Core.
-
-    <br/><br/>
-    Inheritance from node <a href="https://nodejs.org/api/events.html#events_class_eventemitter">events.EventEmitter</a>
-    <br/></div>
-            
-
-            
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-author">Author:</dt>
-    <dd class="tag-author">
-        <ul>
-            <li><a href="mailto:allsajera@gmail.com">Sajera</a></li>
-        </ul>
-    </dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-            
-        
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Methods</h3>
-
-        <dl>
-                
-
-<dt>
-    
-        <h4 class="name" id=".create">
-            
-                <span class="type-signature"><span class="icon green">abstract</span>, <span class="icon green">static</span> </span>create<span class="signature">()</span><span class="type-signature"></span>
-                
-            
-            <div class="container-source members">
-                <code><a href="lib_interfaces_view.js.html">lib/interfaces/view.js</a></code>,
-                <code><a href="lib_interfaces_view.js.html#line51">line 51</a></code>
-            </div>
-            
-        </h4>
-
-        
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        Create View instance.
-        Dummy. Shuold be defined.
-    </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
     
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-    
-
-</dd>
-
-            
-                
-
-<dt>
-    
-        <h4 class="name" id="initialize">
-            
-                <span class="type-signature"><span class="icon green">abstract</span> </span>initialize<span class="signature">()</span><span class="type-signature"></span>
-                
-            
-            <div class="container-source members">
-                <code><a href="lib_interfaces_view.js.html">lib/interfaces/view.js</a></code>,
-                <code><a href="lib_interfaces_view.js.html#line39">line 39</a></code>
-            </div>
-            
-        </h4>
-
-        
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        As module no initialization by defaults.
-        Dummy. Shuold be defined.
-    </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-    
-
-</dd>
-
-            </dl>
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>
+'use strict';
+
+/**
+ * implementation ModuleInterface
+ * @ignore
+ */
+const ModuleInterface = require('../interfaces/module');
+
+/**
+ * @see {@link ModuleInterface}
+ * @description
+    &lt;strong> Base functionality for Modules within the Core. &lt;/strong>
+    &lt;br/>
+    Basically all modules within the Core inherit logic of singleton pattern.
+    Except cases, when in module, present the functionality for extend or replace of module instance.
+    &lt;br/>
+    It is also assumed that the module needs to perform asynchronous actions to create and initialize.
+    &lt;br/>&lt;br/>
+    Abstract class ModuleBase implements this things.
+    &lt;br/>&lt;br/>
+ * @author Sajera &lt;allsajera@gmail.com>
+ * @classdesc Core.ModuleBase
+ * @implements ModuleInterface
+ * @abstract
+ */
+class ModuleBase extends ModuleInterface {
+    /**
+     * @description inheritance from node EventEmitter
+     * @constructor
+     */
+    constructor () {
+        // this
+        super();
+        // implement Singlton
+        if ( this.constructor.instance ) {
+            throw new Error(`
+                Module which you trying to create - already exist.
+                Please see the Singleton concept for ${this.constructor.name}
+            `);
+        }
+    }
+
+    /**
+     * @description Module initialization.
+     * @abstract
+     * @public
+     */
+    initialize () {
+        throw new Error(`
+            Interface define only dummy of method
+            Please define own "init" method for ${this.constructor.name}
+        `);
+    }
+
+    /**
+     * @description
+        &lt;strong> Creation of Module instance. &lt;/strong>
+        &lt;br/> Pleasse note the module cration is async action.
+        &lt;br/> Able to use for async action "async" or "promise".
+        @see {@link utils.handleAsPromise} or @see {@link utils.handleAsAsync}
+        &lt;br/> Queue for modules ...
+     * @override
+     * @public
+     */
+    static create () {
+        this.instance
+    }
+}
+
+/**
+ * exports ModuleBase
+ */
+module.exports = ModuleBase;
+</code></pre>
+        </article>
+    </section>
 
 
 
@@ -336,7 +141,7 @@
 <script src="scripts/linenumber.js"></script>
 
     <script>
-        var id = 'View_sub'.replace(/"/g, '_');
+        var id = '_sub'.replace(/"/g, '_');
         var selectedApi = document.getElementById(id); // do not use jquery selector
         var $selectedApi = $(selectedApi);
 

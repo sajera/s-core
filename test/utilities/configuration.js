@@ -2,12 +2,12 @@
 "use strict";
 
 /**
- *
+ * to be tested
  */
-var Configuration = require('../../lib/modules/configuration');
+var Configuration = require('../../lib/utilities/configuration');
 
 /**
- *
+ * chai
  */
 const fs = require('fs');
 var expect = require('chai').expect;
@@ -55,7 +55,7 @@ describe('Configuration', function () {
     });
 
     it('"instance" should has methods', function () {
-        expect(Configuration.instance.init, '"init" !!!').to.be.a('function');
+        expect(Configuration.instance.initialize, '"initialize" !!!').to.be.a('function');
         expect(Configuration.instance.environment, '"environment" !!!').to.be.a('function');
     });
 
