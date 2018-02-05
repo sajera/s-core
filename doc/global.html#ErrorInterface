@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Module: ErrorInterface | Core Documentation</title>
+    <title>Interface: ErrorInterface | Core Documentation</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -58,6 +58,57 @@
         <div class="container-overview">
         
             
+                <div class="description">Define interface of Errors within the Core.
+    <br/>
+
+    <br/><br/>
+    Inheritance from native Error.
+    <br/><br/></div>
+            
+
+            
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li><a href="mailto:allsajera@gmail.com">Sajera</a></li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
 
             
         
@@ -78,6 +129,280 @@
 
     
 
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        <dl>
+                
+
+<dt>
+    
+        <h4 class="name" id=".create">
+            
+                <span class="type-signature"><span class="icon green">abstract</span>, <span class="icon green">static</span> </span>create<span class="signature">()</span><span class="type-signature"></span>
+                
+            
+            <div class="container-source members">
+                <code><a href="lib_interfaces_error.js.html">lib/interfaces/error.js</a></code>,
+                <code><a href="lib_interfaces_error.js.html#line65">line 65</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Create Error instance.
+        Dummy. Shuold be defined.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="toJSON">
+            
+                <span class="type-signature"><span class="icon green">abstract</span> </span>toJSON<span class="signature">()</span><span class="type-signature"></span>
+                
+            
+            <div class="container-source members">
+                <code><a href="lib_interfaces_error.js.html">lib/interfaces/error.js</a></code>,
+                <code><a href="lib_interfaces_error.js.html#line51">line 51</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Representation of error data in object format.
+        Dummy. Shuold be defined.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="toString">
+            
+                <span class="type-signature"><span class="icon green">abstract</span> </span>toString<span class="signature">()</span><span class="type-signature"></span>
+                
+            
+            <div class="container-source members">
+                <code><a href="lib_interfaces_error.js.html">lib/interfaces/error.js</a></code>,
+                <code><a href="lib_interfaces_error.js.html#line37">line 37</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Representation of error data in string format.
+        Dummy. Shuold be defined.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+</dd>
+
+            </dl>
     
 
     
@@ -102,7 +427,7 @@
 <script src="scripts/linenumber.js"></script>
 
     <script>
-        var id = 'module:ErrorInterface_sub'.replace(/"/g, '_');
+        var id = 'ErrorInterface_sub'.replace(/"/g, '_');
         var selectedApi = document.getElementById(id); // do not use jquery selector
         var $selectedApi = $(selectedApi);
 
