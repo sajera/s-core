@@ -39,9 +39,6 @@ function actionError ( a, r, g, cb ) {
  */
 describe('UTILITIES:', function () {
 
-    require('./logger.js');
-    require('./configuration.js');
-
     it('class "utils" should exist', function () {
         expect(utils).to.be.a('object');
     });
@@ -54,18 +51,16 @@ describe('UTILITIES:', function () {
         expect(utils.uid).to.be.a('function');
     });
 
-    it('should has logger', function () {
-        expect(utils.logger).to.be.a('object');
-        expect(utils.Logger).to.be.a('function');
-        expect(utils.setupLogger).to.be.a('function');
-        expect(utils.logger instanceof utils.Logger).to.be.true;
-    });
-
-    it('should has config', function () {
-        expect(utils.config).to.be.a('object');
-        expect(utils.Configuration).to.be.a('function');
-        expect(utils.setupConfiguration).to.be.a('function');
-        expect(utils.config instanceof utils.Configuration).to.be.true;
+    it('provide defer', function () {
+        expect(utils.defer).to.be.a('function').and.not.to.throw();
+        let deferred = utils.defer();
+        expect(deferred).to.be.a('object');
+        expect(deferred.promise).to.be.a('promise');
+        expect(deferred.status).to.be.a('string').and.equal('pending');
+        expect(deferred.resolve).to.be.a('function').and.not.to.throw();
+        expect(deferred.status).to.be.a('string').and.equal('resolved');
+        expect(deferred.reject).to.be.a('function').and.not.to.throw();
+        expect(deferred.status).to.be.a('string').and.equal('resolved');
     });
 
     it('should has handle', function () {

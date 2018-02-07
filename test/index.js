@@ -34,6 +34,7 @@ describe('MVC Core', function () {
         expect(Core.ErrorBase, "ErrorBase").to.be.a('function');
         expect(Core.ErrorSpec, "ErrorSpec").to.be.a('function');
         expect(Core.ModuleBase, "ModuleBase").to.be.a('function');
+        expect(Core.Bootstrap, "ModuleBase").to.be.a('function');
         // TODO connect others
 
     });
