@@ -5,7 +5,10 @@
     },
     "extends": "eslint:recommended",
     "parserOptions": {
-        "sourceType": "module"
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "experimentalObjectRestSpread": true
+        }
     },
     "globals": {
         "console": true
@@ -20,10 +23,10 @@
             "requireParamDescription": false,
             "requireReturnDescription": false,
             "preferType": {
-                "Boolean": "Boolean",
-                "Number": "Number",
-                "Object": "Object",
-                "String": "String"
+                "boolean": "Boolean",
+                "number": "Number",
+                "object": "Object",
+                "string": "String"
             }
         }],
         "require-jsdoc": ["warn", {"require": {
@@ -58,7 +61,7 @@
         "dot-location": ["warn", "property"],
         "func-call-spacing": ["warn", "never"],
         "key-spacing": ["warn", { "afterColon": true }],
-        "operator-linebreak": ["warn", "none"],
+        "operator-linebreak": ["warn", "before"],
         "linebreak-style": ["error", "windows"],
         "quotes": ["error", "single"],
         "semi": ["error", "always"],
