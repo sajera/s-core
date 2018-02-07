@@ -1,13 +1,11 @@
 
-"use strict";
-
 /**
- *
+ * to be tested
  */
 var Logger = require('../../lib/modules/logger');
 
 /**
- *
+ * chai
  */
 var expect = require('chai').expect;
 
@@ -21,7 +19,7 @@ describe('Logger', function () {
     });
 
     it('has static methods', function () {
-        expect(Logger.create,  "init").to.be.a('function');
+        expect(Logger.create,  "create").to.be.a('function');
     });
 
     // initialize logger instance
@@ -41,6 +39,7 @@ describe('Logger', function () {
         expect(Logger.instance.warn, '"warn" !!!').to.be.a('function');
         expect(Logger.instance.error, '"error" !!!').to.be.a('function');
         expect(Logger.instance.debug, '"debug" !!!').to.be.a('function');
+        expect(Logger.instance.initialize,  "initialize").to.be.a('function');
     });
 
 });

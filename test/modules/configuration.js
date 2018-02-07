@@ -1,13 +1,11 @@
 
-"use strict";
-
 /**
- *
+ * to be tested
  */
 var Configuration = require('../../lib/modules/configuration');
 
 /**
- *
+ * chai
  */
 const fs = require('fs');
 var expect = require('chai').expect;
@@ -22,18 +20,18 @@ describe('Configuration', function () {
     });
 
     it('has static methods', function () {
-        expect(Configuration.create,  "create").to.be.a('function');
-        expect(Configuration.pathENV,  "pathENV").to.be.a('function');
-        expect(Configuration.parseENV,  "parseENV").to.be.a('function');
+        expect(Configuration.create).to.be.a('function');
+        expect(Configuration.pathENV).to.be.a('function');
+        expect(Configuration.parseENV).to.be.a('function');
     });
 
     // initialize configuration instance
     Configuration.create();
 
     it('has static props', function () {
-        expect(Configuration.dirName,  "dirName").to.be.a('string');
-        expect(Configuration.envName,  "envName").to.be.a('string');
-        expect(Configuration.instance,  "instance").to.be.a('object');
+        expect(Configuration.dirName).to.be.a('string');
+        expect(Configuration.envName).to.be.a('string');
+        expect(Configuration.instance).to.be.a('object');
     });
 
     it('"instance" instanceof "Configuration"', function () {
@@ -55,8 +53,8 @@ describe('Configuration', function () {
     });
 
     it('"instance" should has methods', function () {
-        expect(Configuration.instance.init, '"init" !!!').to.be.a('function');
-        expect(Configuration.instance.environment, '"environment" !!!').to.be.a('function');
+        expect(Configuration.instance.initialize).to.be.a('function');
+        expect(Configuration.instance.environment).to.be.a('function');
     });
 
 });
