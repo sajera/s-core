@@ -23,6 +23,7 @@ describe('MVC Core', function () {
 
     require('./utilities/utilities.js');
     require('./interfaces/index.js');
+    require('./modules/index.js');
     require('./errors/index.js');
 
 

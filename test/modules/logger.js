@@ -1,10 +1,8 @@
 
-"use strict";
-
 /**
  * to be tested
  */
-var Logger = require('../../lib/utilities/logger');
+var Logger = require('../../lib/modules/logger');
 
 /**
  * chai
