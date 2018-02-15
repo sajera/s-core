@@ -28,7 +28,6 @@
     },
     "dependencies": {
         "s-is": "^1.4.15",
-        "s-router": "^0.9.9",
         "s-uid": "^1.3.3"
     },
     "devDependencies": {
