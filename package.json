@@ -12,7 +12,7 @@
         "test": "mocha test/index.js",
         "lint": "eslint -c .eslintrc.json ./lib/**/*.js",
         "doc": "jsdoc --verbose -r -c .jsdoc.json -R readme.md -a all -d .doc",
-        "debug": "devtool index.js"
+        "debug": "devtool ./example/start"
     },
     "homepage": "",
     "url": "",

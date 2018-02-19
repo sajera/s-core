@@ -2,7 +2,7 @@
 /**
  * Core library
  */
-const Core = require('../lib/core');
+const Core = require('./core');
 // custom bootstraping
 Core.defineBootstrap( require('./bootstrap') );
 
