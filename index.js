@@ -1,10 +1,14 @@
 
-'use strict';
+/**
+ * @description global node module variable
+ * @typedef {Object} module
+ * @property {*} exports
+ */
 
-const Core = require('./lib/core.js');
+import Core from './lib/core';
 
 /**
  * @description export Core
  * @public
  */
-module.exports = Core;
+export default Core;

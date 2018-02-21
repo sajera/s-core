@@ -11,10 +11,10 @@
         }
     },
     "globals": {
-        "console": true
+        "console": true,
     },
     "rules": {
-        "strict": ["warn"],
+        "strict": ["warn", "global"],
         "no-undef": ["warn"],
         "curly": ["warn", "all"],
         "valid-jsdoc": ["warn", {

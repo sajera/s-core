@@ -3,7 +3,7 @@
  * Core library
  */
 const Core = require('./core');
-// custom bootstraping
+// custom bootstrapping
 Core.defineBootstrap( require('./bootstrap') );
 
 Core.initialize();

@@ -4,3 +4,6 @@ bower_components/*
 old/*
 # ignore temporary docs
 .doc/*
+# IDE settings
+.idea/
+
