@@ -5,26 +5,42 @@
 const Core = require('./core');
 
 /**
- * Customization bootstrap
+ * Custom configuration class
+ */
+const Config = require('./modules/Config');
+
+/**
+ * Custom configuration class
+ */
+const Logger = require('./modules/Logger');
+
+/**
+ * Customization bootstrap example
  *
  * @public
  */
 class Bootstrap extends Core.Bootstrap {
+    /**
+     * @constructor
+     */
     constructor () {
         super();
 
-        // example costomization configuration
-        this.config = require('./modules/Config');
-        // example costomization logger
-        this.logger = require('./modules/Logger');
+        // example customization configuration
+        this.config = Config;
+        // example customization logger
+        this.logger = Logger;
     }
 
+    /**
+     * @param {Function} done
+     */
     initializeModules ( done ) {
         Core.logger.log('Bootstrap.initializeModules', Core.config);
-        // Core.logger.info('Bootstrap.initializeModules', Core.config);
-        // Core.logger.warn('Bootstrap.initializeModules', Core.config);
-        // Core.logger.error('Bootstrap.initializeModules', Core.config);
-        // Core.logger.debug('Bootstrap.initializeModules', Core.config);
+        Core.logger.info('Bootstrap.initializeModules', Core.config);
+        Core.logger.warn('Bootstrap.initializeModules', Core.config);
+        Core.logger.error('Bootstrap.initializeModules', Core.config);
+        Core.logger.debug('Bootstrap.initializeModules', Core.config);
         done();
     }
 

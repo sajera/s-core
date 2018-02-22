@@ -16,12 +16,18 @@ const Core = require('../core');
  * @public
  */
 class Config extends Core.Configuration {
+    /**
+     * @constructor
+     */
     constructor () {
         // this
         super();
     }
 
-    initialize ( callback ) {
+    /**
+     * @param {Function} done
+     */
+    initialize ( done ) {
         // Initialize environment
         // this.environment();
         console.log('Config.initialize');
@@ -31,7 +37,7 @@ class Config extends Core.Configuration {
         let configData = require(path.join(main, filename));
         Object.assign(this, configData);
         // all done
-        callback();
+        done();
     }
 }
 

@@ -4,7 +4,15 @@
  */
 const Core = require('../core');
 
+/**
+ * Customization Logger example
+ *
+ *
+ */
 class Logger extends Core.Logger {
+    /**
+     * @constructor
+     */
     constructor () {
         // this
         super();
@@ -13,9 +21,12 @@ class Logger extends Core.Logger {
         this.SILENCE = false;
     }
 
-    initialize ( callback ) {
+    /**
+     * @param {Function} done
+     */
+    initialize ( done ) {
         console.log('Logger.initialize');
-        callback();
+        done();
     }
 }
 
