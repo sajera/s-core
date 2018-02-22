@@ -1,0 +1,171 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Source: lib/modules/singleton.js | Core Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-jsdoc.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/tui-doc.css">
+
+
+</head>
+<body>
+<nav class="lnb" id="lnb">
+    <div class="logo" style="width: 150px; height: 13px">
+
+            <a href="DEFINE LINK" rel="noopener noreferrer" target="_blank">
+                <img src="DEFINE LOGO IMAGE" width="100%" height="100%">
+            </a>
+
+    </div>
+    <div class="title">
+        <h1><a href="index.html" class="link">Core Documentation</a></h1>
+
+    </div>
+    <div class="search-container" id="search-container">
+        <input type="text" placeholder="Search">
+        <ul></ul>
+    </div>
+
+    <div class="lnb-api hidden"><h3>Modules</h3><ul><li><a href="module-ControllerInterface.html">ControllerInterface</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="module:ControllerInterface_sub"></div></li><li><a href="module-Core.html">Core</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="module:Core_sub"></div></li><li><a href="module-ViewInterface.html">ViewInterface</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="module:ViewInterface_sub"></div></li></ul></div><div class="lnb-api hidden"><h3>Classes</h3><ul><li><a href="Bootstrap.html">Bootstrap</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="Bootstrap_sub"><div class="member-type">Members</div><ul class="inner"><li><a href="Bootstrap.html#config">config</a></li><li><a href="Bootstrap.html#core">core</a></li><li><a href="Bootstrap.html#logger">logger</a></li><li><a href="Bootstrap.html#root">root</a></li></ul><div class="member-type">Methods</div><ul class="inner"><li><a href="Bootstrap.html#initialize">initialize</a></li><li><a href="Bootstrap.html#initializeModules">initializeModules</a></li></ul></div></li><li><a href="Configuration.html">Configuration</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="Configuration_sub"><div class="member-type">Members</div><ul class="inner"><li><a href="Configuration.html#.dirName">dirName</a></li><li><a href="Configuration.html#.envName">envName</a></li></ul><div class="member-type">Methods</div><ul class="inner"><li><a href="Configuration.html#.parseENV">parseENV</a></li><li><a href="Configuration.html#.pathENV">pathENV</a></li><li><a href="Configuration.html#environment">environment</a></li><li><a href="Configuration.html#initialize">initialize</a></li></ul></div></li><li><a href="Core.html">Core</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="Core_sub"><div class="member-type">Members</div><ul class="inner"><li><a href="Core.html#.Bootstrap">Bootstrap</a></li><li><a href="Core.html#.config">config</a></li><li><a href="Core.html#.Configuration">Configuration</a></li><li><a href="Core.html#.ErrorBase">ErrorBase</a></li><li><a href="Core.html#.ErrorSpec">ErrorSpec</a></li><li><a href="Core.html#.HttpServer">HttpServer</a></li><li><a href="Core.html#.Logger">Logger</a></li><li><a href="Core.html#.logger">logger</a></li><li><a href="Core.html#.ModuleBase">ModuleBase</a></li><li><a href="Core.html#.utils">utils</a></li></ul><div class="member-type">Methods</div><ul class="inner"><li><a href="Core.html#.defineBootstrap">defineBootstrap</a></li><li><a href="Core.html#.initialize">initialize</a></li><li><a href="Core.html#initialize">initialize</a></li></ul></div></li><li><a href="ErrorBase.html">ErrorBase</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="ErrorBase_sub"><div class="member-type">Members</div><ul class="inner"><li><a href="ErrorBase.html#_date">_date</a></li><li><a href="ErrorBase.html#level">level</a></li><li><a href="ErrorBase.html#processed">processed</a></li><li><a href="ErrorBase.html#uid">uid</a></li></ul><div class="member-type">Methods</div><ul class="inner"><li><a href="ErrorBase.html#.create">create</a></li><li><a href="ErrorBase.html#toJSON">toJSON</a></li><li><a href="ErrorBase.html#toString">toString</a></li></ul><div class="member-type">Typedef</div><ul class="inner"><li><a href="ErrorBase.html#.toJSON">toJSON</a></li></ul></div></li><li><a href="ErrorSpec.html">ErrorSpec</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="ErrorSpec_sub"><div class="member-type">Members</div><ul class="inner"><li><a href="ErrorSpec.html#_date">_date</a></li><li><a href="ErrorSpec.html#id">id</a></li><li><a href="ErrorSpec.html#level">level</a></li><li><a href="ErrorSpec.html#processed">processed</a></li><li><a href="ErrorSpec.html#spec">spec</a></li><li><a href="ErrorSpec.html#uid">uid</a></li></ul><div class="member-type">Methods</div><ul class="inner"><li><a href="ErrorSpec.html#.create">create</a></li><li><a href="ErrorSpec.html#.define">define</a></li><li><a href="ErrorSpec.html#toJSON">toJSON</a></li><li><a href="ErrorSpec.html#toString">toString</a></li></ul><div class="member-type">Typedef</div><ul class="inner"><li><a href="ErrorSpec.html#.toJSON">toJSON</a></li></ul></div></li><li><a href="HttpParams.html">HttpParams</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="HttpParams_sub"></div></li><li><a href="HttpPoint.html">HttpPoint</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="HttpPoint_sub"><div class="member-type">Members</div><ul class="inner"><li><a href="HttpPoint.html#order">order</a></li></ul><div class="member-type">Methods</div><ul class="inner"><li><a href="HttpPoint.html#compare">compare</a></li><li><a href="HttpPoint.html#matchParams">matchParams</a></li></ul></div></li><li><a href="HttpServer.html">HttpServer</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="HttpServer_sub"><div class="member-type">Members</div><ul class="inner"><li><a href="HttpServer.html#.STATUS">STATUS</a></li><li><a href="HttpServer.html#core">core</a></li><li><a href="HttpServer.html#exclusive">exclusive</a></li><li><a href="HttpServer.html#host">host</a></li><li><a href="HttpServer.html#Params">Params</a></li><li><a href="HttpServer.html#points">points</a></li><li><a href="HttpServer.html#port">port</a></li><li><a href="HttpServer.html#status">status</a></li></ul><div class="member-type">Methods</div><ul class="inner"><li><a href="HttpServer.html#.defineEndpoint">defineEndpoint</a></li><li><a href="HttpServer.html#.stop">stop</a></li><li><a href="HttpServer.html#initialize">initialize</a></li><li><a href="HttpServer.html#lifeCycle">lifeCycle</a></li><li><a href="HttpServer.html#middleware">middleware</a></li></ul><div class="member-type">Typedef</div><ul class="inner"><li><a href="HttpServer.html#.STATUS">STATUS</a></li></ul></div></li><li><a href="Logger.html">Logger</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="Logger_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="Logger.html#debug">debug</a></li><li><a href="Logger.html#error">error</a></li><li><a href="Logger.html#info">info</a></li><li><a href="Logger.html#initialize">initialize</a></li><li><a href="Logger.html#log">log</a></li><li><a href="Logger.html#warn">warn</a></li></ul></div></li><li><a href="ModelBase.html">ModelBase</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="ModelBase_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="ModelBase.html#.create">create</a></li><li><a href="ModelBase.html#.createList">createList</a></li><li><a href="ModelBase.html#initialize">initialize</a></li><li><a href="ModelBase.html#toJSON">toJSON</a></li><li><a href="ModelBase.html#toString">toString</a></li></ul></div></li><li><a href="ModuleBase.html">ModuleBase</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="ModuleBase_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="ModuleBase.html#.create">create</a></li></ul></div></li><li><a href="Singleton.html">Singleton</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="Singleton_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="Singleton.html#.create">create</a></li></ul></div></li><li><a href="utils.html">utils</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="utils_sub"><div class="member-type">Members</div><ul class="inner"><li><a href="utils.html#HttpParams">HttpParams</a></li><li><a href="utils.html#HttpPoint">HttpPoint</a></li><li><a href="utils.html#is">is</a></li><li><a href="utils.html#uid">uid</a></li></ul><div class="member-type">Methods</div><ul class="inner"><li><a href="utils.html#.handleAsAsync">handleAsAsync</a></li><li><a href="utils.html#.handleAsPromise">handleAsPromise</a></li><li><a href="utils.html#defer">defer</a></li><li><a href="utils.html#errorLabel">errorLabel</a></li><li><a href="utils.html#highlightLabel">highlightLabel</a></li><li><a href="utils.html#successLabel">successLabel</a></li></ul><div class="member-type">Typedef</div><ul class="inner"><li><a href="utils.html#.defer">defer</a></li></ul></div></li></ul></div><div class="lnb-api hidden"><h3>Interfaces</h3><ul><li><a href="ControllerInterface.html">ControllerInterface</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="ControllerInterface_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="ControllerInterface.html#.create">create</a></li><li><a href="ControllerInterface.html#initialize">initialize</a></li></ul></div></li><li><a href="ErrorInterface.html">ErrorInterface</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="ErrorInterface_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="ErrorInterface.html#.create">create</a></li><li><a href="ErrorInterface.html#toJSON">toJSON</a></li><li><a href="ErrorInterface.html#toString">toString</a></li></ul></div></li><li><a href="ModelInterface.html">ModelInterface</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="ModelInterface_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="ModelInterface.html#.create">create</a></li><li><a href="ModelInterface.html#.createList">createList</a></li><li><a href="ModelInterface.html#initialize">initialize</a></li><li><a href="ModelInterface.html#toJSON">toJSON</a></li><li><a href="ModelInterface.html#toString">toString</a></li></ul></div></li><li><a href="ModuleInterface.html">ModuleInterface</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="ModuleInterface_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="ModuleInterface.html#.create">create</a></li><li><a href="ModuleInterface.html#initialize">initialize</a></li></ul></div></li><li><a href="View.html">View</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="View_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="View.html#.create">create</a></li><li><a href="View.html#initialize">initialize</a></li></ul></div></li></ul></div><div class="lnb-api hidden"><h3><a href="global.html">Global</a></h3></div>
+</nav>
+<div id="resizer"></div>
+
+<div class="main" id="main">
+
+
+
+
+
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>
+/**
+ * implementation ModuleInterface
+ * @ignore
+ */
+const ModuleInterface = require('../interfaces/module');
+
+/**
+ * utilities of library
+ * @ignore
+ */
+const utils = require('../utilities/utilities');
+
+/**
+ * @description
+ &lt;strong> Base functionality for Modules within the Core. &lt;/strong>
+ &lt;br/>
+ &lt;br/> Basically all modules within the Core inherit logic of singleton pattern.
+ &lt;br/> Except cases, when present the functionality for extend or replace of module instance.
+ {@link Bootstrap#logger} or {@link Bootstrap#config}
+ &lt;br/> It is also assumed that the module needs to perform asynchronous actions to create and initialize.
+ * @example
+ * class MyModule extends Core.Singleton {
+ *      ...
+ * }
+ *  ...
+ * var test = new MyModule();
+ * // in this case you ignore Singleton checks
+ * // it may be useful for example on instanceOf checks
+ * test instanceof MyModule; // => true
+ * // but after module instantiation
+ * var promise = MyModule.create(a,r,g,u,m,e,n,t,s);
+ * var test = new MyModule(); // it thrown an error
+ * @author Sajera &lt;allsajera@gmail.com>
+ * @param {Object} options - any type and any count of arguments to deleagete it in Module
+ * @see {@link ModuleBase}
+ * @implements {ModuleInterface}
+ * @classdesc Core.Singleton
+ * @alias Singleton
+ * @abstract
+ */
+class Singleton extends ModuleInterface {
+    /**
+     * @description inheritance from node EventEmitter
+     * @constructor
+     */
+    constructor () {
+        // this
+        super();
+        // implement Singleton
+        if ( this.constructor.instance ) {
+            throw new Error(`
+                Module "${this.constructor.name}" which you trying to create - already exist.
+                Please see the Singleton concept.
+            `);
+        }
+    }
+
+    /**
+     * @description
+     &lt;strong> Creation of Module instance. &lt;/strong>
+     &lt;br/> Please note the module creation is async action.
+     &lt;br/> Able to use for async actions "async" or "promise".
+     * @see {@link utils.handleAsPromise} or {@link utils.handleAsAsync}
+     * @example
+     * class MyModule extends Core.ModuleBase {
+     *      ...
+     * }
+     * let promise = MyModule.create(a,r,g,u,m,e,n,t,s);
+     * ...
+     * MyModule.instance; // only example !!! do not initialize modules instead the application
+     * @returns {Promise}
+     * @public
+     */
+    static create ( options ) {
+        let Module = this;
+        // ability to handle initialization errors
+        return new Promise(function ( resolve, reject ) {
+            Module.instance = new Module(options);
+            utils // do not provide ability to handle exception as the native promise
+                .handleAsPromise(Module.instance.initialize.bind(Module.instance))
+                .then(resolve)
+                .catch(reject);
+        });
+    }
+}
+
+/**
+ * exports Singleton
+ */
+module.exports = Singleton;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<footer>
+    <img class="logo" src="DEFINE LOGO IMAGE" style="width: 150px; height: 13px">
+    <div class="footer-text">Core (s-core)</div>
+</footer>
+<script>prettyPrint();</script>
+<script src="scripts/jquery.min.js"></script>
+<script src="scripts/tui-doc.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+    <script>
+        var id = '_sub'.replace(/"/g, '_');
+        var selectedApi = document.getElementById(id); // do not use jquery selector
+        var $selectedApi = $(selectedApi);
+
+        $selectedApi.removeClass('hidden');
+        $selectedApi.parent().find('.glyphicon').removeClass('glyphicon-plus').addClass('glyphicon-minus');
+        showLnbApi();
+    </script>
+
+</body>
+</html>

@@ -1,8 +1,10 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Module: ControllerInterface | Core Documentation</title>
+    <title>Source: lib/utilities/httpparams.js | Core Documentation</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -43,49 +45,53 @@
 
 
 
-
-<section>
-
-<header>
     
-        <h2>ControllerInterface</h2>
-        
-    
-</header>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>
+/**
+ * native Node.js modules
+ * @ignore
+ */
+const url = require('url');
 
-<article>
-    
-        <div class="container-overview">
-        
-            
+/**
+ * @description
+    Params provide ability to prepare request data before delegate to controller.
+ * @author Sajera &lt;allsajera@gmail.com>
+ * @param {Object} request - node server HttpRequest
+ * @param {Object} response - node server HttpResponse
+ * @param {Object} urlParams - parameters from url {@link HttpPoint#matchParams}
+ * @classdesc Core.utils.HttpParams
+ * @alias HttpParams
+ * @private
+ * @class
+ */
+class HttpParams {
+    /**
+     * @param {Object} request - node server HttpRequest
+     * @param {Object} response - node server HttpResponse
+     * @param {Object} urlParams - parameters from url {@link HttpPoint#matchParams}
+     * @constructor
+     */
+    constructor ( request, response, urlParams ) {
 
-            
-        
-        </div>
-    
+        // TODO provide default preparation
+        this.request = request;
+        this.params = urlParams;
+        this.response = response;
+        this.parsedURL = url.parse(request.url);
+    }
 
-    
+}
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+/**
+ * exports HttpParams
+ */
+module.exports = HttpParams;
+</code></pre>
+        </article>
+    </section>
 
 
 
@@ -102,7 +108,7 @@
 <script src="scripts/linenumber.js"></script>
 
     <script>
-        var id = 'module:ControllerInterface_sub'.replace(/"/g, '_');
+        var id = '_sub'.replace(/"/g, '_');
         var selectedApi = document.getElementById(id); // do not use jquery selector
         var $selectedApi = $(selectedApi);
 

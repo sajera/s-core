@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Module: ControllerInterface | Core Documentation</title>
+    <title>Class: HttpPoint | Core Documentation</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -48,7 +48,9 @@
 
 <header>
     
-        <h2>ControllerInterface</h2>
+        <h2><span class="attribs"><span class="type-signature"><span class="icon green">private</span> </span></span>HttpPoint<span class="signature">(expression, Controller)</span><span class="type-signature"></span></h2>
+        
+            <div class="class-description">Core.utils.HttpPoint</div>
         
     
 </header>
@@ -59,7 +61,188 @@
         
             
 
+<dt>
+    
+        <h4 class="name" id="HttpPoint">
             
+                new <span class="type-signature"><span class="icon green">private</span> </span>HttpPoint<span class="signature">(expression, Controller)</span><span class="type-signature"></span>
+                
+            
+            <div class="container-source members">
+                <code><a href="lib_utilities_httppoint.js.html">lib/utilities/httppoint.js</a></code>,
+                <code><a href="lib_utilities_httppoint.js.html#line29">line 29</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <strong> Point </strong> - provide functionality to determine endpoint of http request by url
+    <br/>
+    <br/> {:path} - required - /(static name)/(dynamic data)/
+    <br/> {?:path} - not required - /(static name - required even if its value is not obligatory)/(dynamic data)/
+    <br/> {-:path} - convert to one part of query - /(expecting dynamic data)/
+    <br/> {-?:path} - convert to one part of query - not required - /(expecting dynamic data)/
+    <br/>
+    <br/> <strong> Example </strong>
+    <br/> url "event/123/"                                  expression "/{:event}/"                     => {event: '123'}
+    <br/> url "api/some/event/123/"                         expression "/api/some/{:event}/"            => {event: '123'}
+    <br/> one part url "api/some/event/123/"                expression "/api/some/event/{-:eventId}/"   => {eventId: '123'}
+    <br/> not required part of url "api/some/event/[123]"   expression "/api/some/event/{-?:eventId}"   => {eventId: ['123'='']}
+    <br/> <strong> Complex example </strong>
+    <br/> url "event/123/action/check"                      expression "/{:event}/{:action}"            => {event: '123', action: 'check'}
+    <br/> url "event/123/[action/check]"                    expression "/{:event}/{?:action}"           => {event: '123', [action: 'check']}
+    <br/> url "event/123/[check]"                           expression "/event/{-:eventId}/{-?:action}" => {eventId: '123', [action: 'check']}
+    <br/><br/>
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>expression</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">human understandable expression to determine url endpoint</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>Controller</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="ControllerInterface.html">ControllerInterface</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li><a href="mailto:allsajera@gmail.com">Sajera</a></li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+</dd>
+
         
         </div>
     
@@ -77,7 +260,412 @@
     
 
     
+        <h3 class="subsection-title">Members</h3>
 
+        <dl>
+            
+
+<dt>
+<h4 class="name" id="order">
+    <span class="type-signature"><span class="icon green">readonly</span> </span>order<span class="type-signature"></span>
+    
+    <div class="container-source members">
+        <code><a href="lib_utilities_httppoint.js.html">lib/utilities/httppoint.js</a></code>,
+        <code><a href="lib_utilities_httppoint.js.html#line72">line 72</a></code>
+    </div>
+    
+</h4>
+
+
+</dt>
+<dd>
+    
+    <div class="description">
+        Endpoints should be <strong> sorted </strong>.
+        <br/> To test longest match first then shorten.
+        <br/> To prevent short queries which overhead the longest query with the same part
+    </div>
+    
+
+    <!--
+    
+    -->
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+</dd>
+
+        </dl>
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        <dl>
+                
+
+<dt>
+    
+        <h4 class="name" id="compare">
+            
+                <span class="type-signature"></span>compare<span class="signature">(query)</span><span class="type-signature"> &rarr; {Boolean}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="lib_utilities_httppoint.js.html">lib/utilities/httppoint.js</a></code>,
+                <code><a href="lib_utilities_httppoint.js.html#line82">line 82</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        compare query with current endpoint (fast)
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>query</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">parsed url - pathname</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">Boolean</span>
+
+
+
+
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="matchParams">
+            
+                <span class="type-signature"></span>matchParams<span class="signature">(query)</span><span class="type-signature"> &rarr; {Object}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="lib_utilities_httppoint.js.html">lib/utilities/httppoint.js</a></code>,
+                <code><a href="lib_utilities_httppoint.js.html#line103">line 103</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        get a query params from url
+        <br/> <strong> Example </strong>
+        <br/> url "event/123/"                                  expression "/{:event}/"                     => {event: '123'}
+        <br/> url "api/some/event/123/"                         expression "/api/some/{:event}/"            => {event: '123'}
+        <br/> one part url "api/some/event/123/"                expression "/api/some/event/{-:eventId}/"   => {eventId: '123'}
+        <br/> not required part of url "api/some/event/[123]"   expression "/api/some/event/{-?:eventId}"   => {eventId: ['123'='']}
+        <br/> <strong> Complex example </strong>
+        <br/> url "event/123/action/check"                      expression "/{:event}/{:action}"            => {event: '123', action: 'check'}
+        <br/> url "event/123/[action/check]"                    expression "/{:event}/{?:action}"           => {event: '123', [action: 'check']}
+        <br/> url "event/123/[check]"                           expression "/event/{-:eventId}/{-?:action}" => {eventId: '123', [action: 'check']}
+        <br/><br/>
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>query</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">parsed url - pathname</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">Object</span>
+
+
+
+
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+</dd>
+
+            </dl>
     
 
     
@@ -102,7 +690,7 @@
 <script src="scripts/linenumber.js"></script>
 
     <script>
-        var id = 'module:ControllerInterface_sub'.replace(/"/g, '_');
+        var id = 'HttpPoint_sub'.replace(/"/g, '_');
         var selectedApi = document.getElementById(id); // do not use jquery selector
         var $selectedApi = $(selectedApi);
 

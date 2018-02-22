@@ -1,8 +1,10 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Module: ControllerInterface | Core Documentation</title>
+    <title>Source: lib/modules/logger.js | Core Documentation</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -43,49 +45,128 @@
 
 
 
-
-<section>
-
-<header>
     
-        <h2>ControllerInterface</h2>
-        
-    
-</header>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>
+/**
+ * implementation ModuleInterface
+ * @ignore
+ */
+const Singleton = require('./singleton');
 
-<article>
-    
-        <div class="container-overview">
-        
-            
+/**
+ * utilities of library
+ * @ignore
+ */
+const utils = require('../utilities/utilities'),
+    highlightLabel = utils.highlightLabel;
 
-            
-        
-        </div>
-    
+/**
+  * @description Implement default logger within the Core.
+  * @example
+  * class MyLogger extends Core.Logger {
+  *  ...
+  * }
+  * @author Sajera &lt;allsajera@gmail.com>
+  * @implements {ModuleInterface}
+  * @see {@link Singleton}
+  * @classdesc Core.logger
+  * @alias Logger
+  * @public
+  * @class
+  */
+class Logger extends Singleton {
+    /**
+     * @constructor
+     */
+    constructor () {
+        // this
+        super();
+        // defaults
+        this.DEBUG = true;
+        this.SILENCE = false;
+    }
 
-    
+    /**
+     * @description
+        Default implementation of log method.
+        Can be overridden by inheritance.
+     * @param {*} ...args - any type and any count of arguments
+     * @public
+     */
+    log ( ...args ) {
+        // eslint-disable-next-line
+        this.SILENCE || console.log(...args);
+    }
 
-    
+    /**
+     * @description
+        Default implementation of warn method.
+        Can be overridden by inheritance.
+     * @param {*} ...args - any type and any count of arguments
+     * @public
+     */
+    info ( ...args ) {
+        // eslint-disable-next-line
+        this.SILENCE || console.info(...args);
+    }
 
-    
+    /**
+     * @description
+        Default implementation of warn method.
+        Can be overridden by inheritance.
+     * @param {*} ...args - any type and any count of arguments
+     * @public
+     */
+    warn ( ...args ) {
+        // eslint-disable-next-line
+        this.SILENCE || console.warn(...args);
+    }
 
-    
+    /**
+     * @description
+        Default implementation of error method.
+        Can be overridden by inheritance.
+     * @param {*} ...args - any type and any count of arguments
+     * @public
+     */
+    error ( ...args ) {
+        // eslint-disable-next-line
+        this.SILENCE || console.error(...args);
+    }
 
-    
+    /**
+     * @description
+        Default implementation of debug log method.
+        Can be overridden by inheritance.
+     * @param {*} ...args - any type and any count of arguments
+     * @public
+     */
+    debug ( ...args ) {
+        // eslint-disable-next-line
+        this.DEBUG &amp;&amp; console.log(highlightLabel('DEBUG'), ...args);
+    }
 
-    
+    /**
+     * @description
+        As module no initialization by defaults.
+        Dummy. Can be overridden by inheritance.
+     * @param {function} callback
+     * @public
+     */
+    initialize ( callback ) {
+        callback();
+    }
+}
 
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+/**
+ * exports Logger
+ */
+module.exports = Logger;
+</code></pre>
+        </article>
+    </section>
 
 
 
@@ -102,7 +183,7 @@
 <script src="scripts/linenumber.js"></script>
 
     <script>
-        var id = 'module:ControllerInterface_sub'.replace(/"/g, '_');
+        var id = '_sub'.replace(/"/g, '_');
         var selectedApi = document.getElementById(id); // do not use jquery selector
         var $selectedApi = $(selectedApi);
 

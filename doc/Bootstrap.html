@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Module: ControllerInterface | Core Documentation</title>
+    <title>Class: Bootstrap | Core Documentation</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -48,7 +48,9 @@
 
 <header>
     
-        <h2>ControllerInterface</h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>Bootstrap<span class="signature">()</span><span class="type-signature"></span></h2>
+        
+            <div class="class-description">Core.Bootstrap</div>
         
     
 </header>
@@ -59,7 +61,125 @@
         
             
 
+<dt>
+    
+        <h4 class="name" id="Bootstrap">
             
+                new <span class="type-signature"></span>Bootstrap<span class="signature">()</span><span class="type-signature"></span>
+                
+            
+            <div class="container-source members">
+                <code><a href="lib_modules_bootstrap.js.html">lib/modules/bootstrap.js</a></code>,
+                <code><a href="lib_modules_bootstrap.js.html#line59">line 59</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Bootstrap application. Provide ability to customize bootstrapping.
+    <br/><br/> <strong> Bootstrap </strong>
+    <br/> 1. Extend Available modules if it necessary
+    <br/> 2. Setup Logger
+    <br/> 3. Setup Configuration
+    <br/> 4. Setup Root module (HttpServer|CronServer|Cli)
+    <br/> 5. Setup other modules <a href="Bootstrap.html#initializeModules"><code>Bootstrap#initializeModules</code></a>
+    <br/><br/>
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="implements">Implements:</dt>
+    <dd class="implements"><ul>
+        
+            <li><a href="ModuleInterface.html">ModuleInterface</a></li>
+        
+    </ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li><a href="mailto:allsajera@gmail.com">Sajera</a></li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="Singleton.html"><code>Singleton</code></a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>class MyBootstrap extends Core.Bootstrap { ...}Core.setupBootstrap(MyBootstrap);Core.initialize();</code></pre>
+
+    
+
+</dd>
+
         
         </div>
     
@@ -77,7 +197,666 @@
     
 
     
+        <h3 class="subsection-title">Members</h3>
 
+        <dl>
+            
+
+<dt>
+<h4 class="name" id="config">
+    <span class="type-signature"></span>config<span class="type-signature"> :<a href="Configuration.html">Configuration</a></span>
+    
+    <div class="container-source members">
+        <code><a href="lib_modules_bootstrap.js.html">lib/modules/bootstrap.js</a></code>,
+        <code><a href="lib_modules_bootstrap.js.html#line126">line 126</a></code>
+    </div>
+    
+</h4>
+
+
+</dt>
+<dd>
+    
+    <div class="description">
+        ability to replace default config
+    </div>
+    
+
+    <!--
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Configuration.html">Configuration</a></span>
+
+
+            </li>
+        </ul>
+    
+    -->
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="Configuration.html"><code>Configuration</code></a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+    
+
+    
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>class MyConfiguration extends Core.Configuration { ...}...class MyBootstrap extends Core.Bootstrap { constructor () {     super();     this.config = MyConfiguration; }}</code></pre>
+
+    
+</dd>
+
+        
+            
+
+<dt>
+<h4 class="name" id="core">
+    <span class="type-signature"><span class="icon green">private</span>, <span class="icon green">readonly</span> </span>core<span class="type-signature"> :<a href="Core.html">Core</a></span>
+    
+    <div class="container-source members">
+        <code><a href="lib_modules_bootstrap.js.html">lib/modules/bootstrap.js</a></code>,
+        <code><a href="lib_modules_bootstrap.js.html#line72">line 72</a></code>
+    </div>
+    
+</h4>
+
+
+</dt>
+<dd>
+    
+    <div class="description">
+        Correct access to Core.instance. Must wait until Core will be created.
+    </div>
+    
+
+    <!--
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Core.html">Core</a></span>
+
+
+            </li>
+        </ul>
+    
+    -->
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+</dd>
+
+        
+            
+
+<dt>
+<h4 class="name" id="logger">
+    <span class="type-signature"></span>logger<span class="type-signature"> :<a href="Logger.html">Logger</a></span>
+    
+    <div class="container-source members">
+        <code><a href="lib_modules_bootstrap.js.html">lib/modules/bootstrap.js</a></code>,
+        <code><a href="lib_modules_bootstrap.js.html#line93">line 93</a></code>
+    </div>
+    
+</h4>
+
+
+</dt>
+<dd>
+    
+    <div class="description">
+        ability to replace default logger
+    </div>
+    
+
+    <!--
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Logger.html">Logger</a></span>
+
+
+            </li>
+        </ul>
+    
+    -->
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="Logger.html"><code>Logger</code></a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+    
+
+    
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>class MyLogger extends Core.Logger { ...}...class MyBootstrap extends Core.Bootstrap { constructor () {     super();     this.logger = MyLogger; }}</code></pre>
+
+    
+</dd>
+
+        
+            
+
+<dt>
+<h4 class="name" id="root">
+    <span class="type-signature"></span>root<span class="type-signature"> :<a href="ModuleBase.html">ModuleBase</a></span>
+    
+    <div class="container-source members">
+        <code><a href="lib_modules_bootstrap.js.html">lib/modules/bootstrap.js</a></code>,
+        <code><a href="lib_modules_bootstrap.js.html#line158">line 158</a></code>
+    </div>
+    
+</h4>
+
+
+</dt>
+<dd>
+    
+    <div class="description">
+        <br/> Available Core root modules {@link: HttpServer}, {@link: CronServer}, {@link: Cli}.
+        <br/> ability to replace default root module (HttpServer)
+        <strong> Advanced knowledge </strong> You may create your own Root Module for Core.
+    </div>
+    
+
+    <!--
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="ModuleBase.html">ModuleBase</a></span>
+
+
+            </li>
+        </ul>
+    
+    -->
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="ModuleBase.html"><code>ModuleBase</code></a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+    
+
+    
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>class MyBootstrap extends Core.Bootstrap { constructor () {     super();     this.root = Core.HttpServer; }}</code></pre>
+
+    
+</dd>
+
+        </dl>
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        <dl>
+                
+
+<dt>
+    
+        <h4 class="name" id="initialize">
+            
+                <span class="type-signature"><span class="icon green">private</span> </span>initialize<span class="signature">(callback)</span><span class="type-signature"></span>
+                
+            
+            <div class="container-source members">
+                <code><a href="lib_modules_bootstrap.js.html">lib/modules/bootstrap.js</a></code>,
+                <code><a href="lib_modules_bootstrap.js.html#line201">line 201</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Bootstrap module has async initialization.
+        <br/> This flow has important things.
+        And it <strong> can't </strong> be overridden.
+        <br/><br/> <strong> Bootstrap initialization </strong>
+        <br/> 1. Setup Logger
+        <br/> 2. Setup Configuration
+        <br/> 3. Setup Root module (HttpServer|CronServer|Cli)
+        <br/> 4. Setup other modules (initializeModules)
+        <br/><br/>
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="implements">Implements:</dt>
+    <dd class="implements"><ul>
+        
+            <li><a href="ModuleInterface.html#initialize">ModuleInterface#initialize</a></li>
+        
+    </ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="initializeModules">
+            
+                <span class="type-signature"><span class="icon green">private</span> </span>initializeModules<span class="signature">(callback)</span><span class="type-signature"></span>
+                
+            
+            <div class="container-source members">
+                <code><a href="lib_modules_bootstrap.js.html">lib/modules/bootstrap.js</a></code>,
+                <code><a href="lib_modules_bootstrap.js.html#line182">line 182</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Bootstrap initialization <strong> last step </strong>
+        <br/> Last step of initialization Core application.
+        <br/> You may define your own modules or helpers initialization within the Core.
+        <br/> You may use async or promise for implementation
+        <br/><br/>
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">for using async way</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+</dd>
+
+            </dl>
     
 
     
@@ -102,7 +881,7 @@
 <script src="scripts/linenumber.js"></script>
 
     <script>
-        var id = 'module:ControllerInterface_sub'.replace(/"/g, '_');
+        var id = 'Bootstrap_sub'.replace(/"/g, '_');
         var selectedApi = document.getElementById(id); // do not use jquery selector
         var $selectedApi = $(selectedApi);
 

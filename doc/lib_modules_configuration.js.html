@@ -1,8 +1,10 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Module: ControllerInterface | Core Documentation</title>
+    <title>Source: lib/modules/configuration.js | Core Documentation</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -43,49 +45,153 @@
 
 
 
-
-<section>
-
-<header>
     
-        <h2>ControllerInterface</h2>
-        
-    
-</header>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>
+/**
+ * native Node.js modules
+ * @ignore
+ */
+const fs = require('fs');
+const path = require('path');
 
-<article>
-    
-        <div class="container-overview">
-        
-            
+/**
+ * implementation ModuleInterface
+ * @ignore
+ */
+const Singleton = require('./singleton');
 
-            
-        
-        </div>
-    
+/**
+ * @description Implement default configuration within the Core.
+ * @author Sajera &lt;allsajera@gmail.com>
+ * @implements {ModuleInterface}
+ * @see {@link Singleton}
+ * @classdesc Core.config
+ * @alias Configuration
+ * @public
+ * @class
+ */
+class Configuration extends Singleton {
+    /**
+     * @constructor
+     */
+    constructor () {
+        // this
+        super();
+        // no defaults
+    }
 
-    
+    /**
+     * @description load Environment and extend process.env variables
+     * @public
+     */
+    environment () {
+        let pathToEnv = Configuration.pathENV();
+        if (pathToEnv) {
+            // read
+            let source = fs.readFileSync(pathToEnv, 'utf8', 'r');
+            // parse
+            let env = Configuration.parseENV(source);
+            // extend to process env
+            // eslint-disable-next-line
+            Object.assign(process.env, env);
+        }
+    }
 
-    
+    /**
+     * @description
+        As module initialization by defaults.
+        Can be overridden by inheritance.
+     * @param {function} callback
+     * @public
+     */
+    initialize ( callback ) {
+        // Initialize environment
+        this.environment();
+        // Initialize config
+        let main = path.dirname(process.mainModule.filename);
+        let configPath = path.join(main, Configuration.dirName, Configuration.envName);
+        if (fs.existsSync(configPath+'.json')||fs.existsSync(configPath+'.js')) {
+            let configData = require(configPath);
+            Object.assign(this, configData);
+        }
+        // all done
+        callback();
+    }
 
-    
+    /**
+     * @description
+        name of *.env file. Can be overridden by inheritance.
+        &lt;br/>&lt;br/> DEFAULTS: APPLICATION_ENV || NODE_ENV || 'development'
+     * @public
+     */
+    static get envName () {
+        // eslint-disable-next-line
+        return process.env.APPLICATION_ENV || process.env.NODE_ENV || 'development';
+    }
 
-    
+    /**
+     * @description
+        dirname with config files. Can be overridden by inheritance.
+        &lt;br/>&lt;br/> DEFAULTS: 'config'
+     * @public
+     */
+    static get dirName () {
+        return 'config';
+    }
 
-    
+    /**
+     * @description try to find env file
+     * @returns {Object} path to file *.env
+     * @public
+     */
+    static pathENV () {
+        // absolute path to root process dir
+        let main = path.dirname(process.mainModule.filename);
+        // absolute path to default ".env"
+        let env = path.join(main, '.env');
+        // absolute path to config directory ".env"
+        let dirEnv = path.join(main, Configuration.dirName, '.env');
+        // absolute path to default "{NODE_ENV||'development'}.env"
+        let namedEnv = path.join(main, Configuration.envName+'.env');
+        // absolute path to config directory "{NODE_ENV||'development'}.env"
+        let dirNamedEnv = path.join(main, Configuration.dirName, Configuration.envName+'.env');
+        // choose by priority
+        return fs.existsSync( dirNamedEnv ) ? dirNamedEnv
+            : fs.existsSync( namedEnv ) ? namedEnv
+                : fs.existsSync( dirEnv ) ? dirEnv
+                    : fs.existsSync( env ) ? env : null;
+    }
 
-    
+    /**
+     * @description env file parser
+     * @param {Buffer} source - file source within node js
+     * @returns {Object}
+     * @public
+     */
+    static parseENV ( source ) {
+        let results = {};
+        try {
+            let field, value, key = 0, lines = String( source ).split('\n');
+            for ( ; (key &lt; lines.length)&amp;&amp;lines[ key ]; key ++ ) {
+                field = lines[ key ].match(/^\s*([\w\.\-\$\@\#\*\!\~]+)\s*=+/)[1];
+                value = lines[ key ].match(/=\s*(.*)\s*$/)[1].trim();
+                if ( field ) {results[ field ] = value.replace(/(^['"]|['"]$)/g, '').replace(/\s+/, ' ');}
+            }
+        } catch ( e ) { results = {}; }
+        return results;
+    }
 
-    
+}
 
-    
-
-    
-
-    
-</article>
-
-</section>
+/**
+ * exports Configuration
+ */
+module.exports = Configuration;
+</code></pre>
+        </article>
+    </section>
 
 
 
@@ -102,7 +208,7 @@
 <script src="scripts/linenumber.js"></script>
 
     <script>
-        var id = 'module:ControllerInterface_sub'.replace(/"/g, '_');
+        var id = '_sub'.replace(/"/g, '_');
         var selectedApi = document.getElementById(id); // do not use jquery selector
         var $selectedApi = $(selectedApi);
 
