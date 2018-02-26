@@ -2,12 +2,12 @@
 /**
  * to be tested
  */
-var Logger = require('../../lib/modules/logger');
+const Logger = require('../../lib/modules/logger');
 
 /**
  * chai
  */
-var expect = require('chai').expect;
+const expect = require('chai').expect;
 
 /**
  * TESTS
@@ -19,14 +19,14 @@ describe('Logger', function () {
     });
 
     it('has static methods', function () {
-        expect(Logger.create,  "create").to.be.a('function');
+        expect(Logger.create).to.be.a('function');
     });
 
     // initialize logger instance
     Logger.create();
 
     it('has static props', function () {
-        expect(Logger.instance,  "instance").to.be.a('object');
+        expect(Logger.instance).to.be.a('object');
     });
 
     it('"instance" instanceof "Logger"', function () {
@@ -39,7 +39,7 @@ describe('Logger', function () {
         expect(Logger.instance.warn, '"warn" !!!').to.be.a('function');
         expect(Logger.instance.error, '"error" !!!').to.be.a('function');
         expect(Logger.instance.debug, '"debug" !!!').to.be.a('function');
-        expect(Logger.instance.initialize,  "initialize").to.be.a('function');
+        expect(Logger.instance.initialize,  '"initialize" !!!').to.be.a('function');
     });
 
 });

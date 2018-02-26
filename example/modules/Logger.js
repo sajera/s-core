@@ -24,10 +24,10 @@ class Logger extends Core.Logger {
     /**
      * @param {Function} done
      */
-    initialize ( done ) {
-        console.log('Logger.initialize');
-        done();
-    }
+    // initialize ( done ) {
+    //     console.log('Logger.initialize');
+    //     done();
+    // }
 }
 
 

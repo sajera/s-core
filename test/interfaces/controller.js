@@ -2,12 +2,12 @@
 /**
  * to be tested
  */
-var ControllerInterface = require('../../lib/interfaces/controller');
+let ControllerInterface = require('../../lib/interfaces/controller');
 
 /**
  * chai
  */
-var expect = require('chai').expect;
+let expect = require('chai').expect;
 
 /**
  * Interface Error
@@ -22,7 +22,7 @@ describe('ControllerInterface', function () {
         expect(ControllerInterface.create).to.be.a('function').and.to.throw();
     });
 
-    var instance = new ControllerInterface();
+    let instance = new ControllerInterface();
     it('"instance" should has @abstract methods "initialize"', function () {
         expect(instance.initialize).to.be.a('function').and.not.to.throw();
     });

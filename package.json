@@ -12,7 +12,8 @@
         "test": "mocha test/index.js",
         "lint": "eslint -c .eslintrc.json ./lib/**/*.js",
         "doc": "jsdoc --verbose -r -c .jsdoc.json -R readme.md -a all -d .doc",
-        "debug": "devtool ./example/start"
+        "debug-devtool": "devtool ./example/start --break",
+        "debug-node": "node --inspect ./example/start"
     },
     "homepage": "",
     "url": "",

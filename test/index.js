@@ -4,12 +4,12 @@
 /**
  * to be tested
  */
-var Core = require('../index.js');
+let Core = require('../index.js');
 
 /**
  * chai
  */
-var expect = require('chai').expect;
+let expect = require('chai').expect;
 
 /**
  * library TESTS
@@ -55,6 +55,10 @@ describe('MVC Core', function () {
         expect(Core.ErrorSpec).to.be.a('function');
     });
 
+    it('should has @static class "Utils"', function () {
+        expect(Core.Utils).to.be.a('function');
+    });
+
     it('has @static methods', function () {
         expect(Core.create).to.be.a('function');
         expect(Core.initialize).to.be.a('function');
@@ -65,7 +69,6 @@ describe('MVC Core', function () {
     it('has static props', function () {
         expect(Core.logger).to.be.a('object');
         expect(Core.config).to.be.a('object');
-        expect(Core.utils).to.be.a('object');
         // TODO connect others
 
     });

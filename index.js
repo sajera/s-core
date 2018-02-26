@@ -5,10 +5,10 @@
  * @property {*} exports
  */
 
-import Core from './lib/core';
+const Core = require('./lib/core');
 
 /**
  * @description export Core
  * @public
  */
-export default Core;
+module.exports = Core;

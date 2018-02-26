@@ -2,23 +2,31 @@
 /**
  * to be tested
  */
-var ErrorSpec = require('../../lib/errors/errorspec');
+const ErrorSpec = require('../../lib/errors/errorspec');
 
 /**
  * chai
  */
-var expect = require('chai').expect;
+const expect = require('chai').expect;
 
 /**
  * Interface Error
  */
 describe('ErrorSpec', function () {
 
-    var instance, id = 1, spec = {
+    let instance, id = 'error_code', spec = {
         status: 500,
         data: {a: 'a'},
         message: 'Test',
     };
+
+    it('should has @static method "define"', function () {
+        expect(ErrorSpec.define).to.be.a('function');
+    });
+
+    it('test @static method "define"', function () {
+        ErrorSpec.define(id, spec);
+    });
 
     it('class "ErrorSpec" should exist', function () {
         expect(ErrorSpec).to.be.a('function');
@@ -28,18 +36,11 @@ describe('ErrorSpec', function () {
         expect(ErrorSpec.create).to.be.a('function');
     });
 
-    it('should has @static method "define"', function () {
-        expect(ErrorSpec.create).to.be.a('function');
-    });
-
-    it('test @static method "define"', function () {
-        ErrorSpec.define(id, spec);
-    });
-
     it('test @static method "create"', function () {
         instance = ErrorSpec.create(id, new Error());
         expect(instance).to.be.a('error');
     });
+
 
     it('"instance" should has property "spec"', function () {
         expect(instance.spec).to.be.a('object').and.eql(spec);
@@ -50,7 +51,7 @@ describe('ErrorSpec', function () {
     });
 
     it('"instance" should has property "id"', function () {
-        expect(instance.id).to.be.a('number').and.equal(id);
+        expect(instance.id).to.be.a('string').and.equal(id);
     });
 
     it('"instance" should has method "toJSON"', function () {

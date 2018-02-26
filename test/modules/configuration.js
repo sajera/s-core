@@ -2,13 +2,13 @@
 /**
  * to be tested
  */
-var Configuration = require('../../lib/modules/configuration');
+const Configuration = require('../../lib/modules/configuration');
 
 /**
  * chai
  */
 const fs = require('fs');
-var expect = require('chai').expect;
+const expect = require('chai').expect;
 
 /**
  * TESTS
@@ -41,9 +41,9 @@ describe('Configuration', function () {
     it('Configuration static parseENV', function () {
         expect(Configuration.parseENV).to.be.a('function');
         // read
-        var source = fs.readFileSync(__dirname+'/test.env', 'utf8', 'r');
+        let source = fs.readFileSync('./test/modules/test.env', 'utf8', 'r');
         // parse
-        var env = Configuration.parseENV(source);
+        let env = Configuration.parseENV(source);
         expect(env, 'parse env file "test.env"').to.eql({
             config_e: 'ENV',
             DB_USER: 'root',
