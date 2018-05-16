@@ -2,7 +2,7 @@
 /**
  * Core library
  */
-const Core = require('../core');
+const Core = require('../core-alias');
 
 /**
  * Customization Logger example

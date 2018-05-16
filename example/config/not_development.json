@@ -1,3 +1,5 @@
 {
-    "some": "not_development things"
+    "some": "not_development things",
+    "SILENCE": false,
+    "DEBUG": true
 }

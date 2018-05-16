@@ -8,7 +8,7 @@ const path = require('path');
 /**
  * Core library
  */
-const Core = require('../core');
+const Core = require('../core-alias');
 
 /**
  * Customization Configuration example

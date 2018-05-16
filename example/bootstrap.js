@@ -2,17 +2,7 @@
 /**
  * Core library
  */
-const Core = require('./core');
-
-/**
- * Custom configuration class
- */
-const Config = require('./modules/Config');
-
-/**
- * Custom configuration class
- */
-const Logger = require('./modules/Logger');
+const Core = require('./core-alias');
 
 /**
  * Custom configuration class
@@ -24,17 +14,22 @@ const ErrorSpec = Core.ErrorSpec;
  *
  * @public
  */
-class Bootstrap extends Core.Bootstrap {
+class Bootstrap extends Core.Singleton {
     /**
      * @constructor
      */
     constructor () {
+        // this
         super();
 
-        // example customization configuration
-        this.config = Config;
-        // example customization logger
-        this.logger = Logger;
+    }
+
+    initialize ( done ) {
+        done();
+    }
+
+    run ( done ) {
+        done();
     }
 
     /**
